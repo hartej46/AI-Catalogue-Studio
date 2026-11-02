@@ -1,0 +1,151 @@
+{
+  "domain": "optical",
+  "categories": [
+    {
+      "id": "titanium_rimless",
+      "label": "Titanium & Rimless",
+      "enabled": true,
+      "rule": "Capture ultra-fine titanium temples and rimless drill mounts with pin-sharp clarity, preserving frame featherweight delicacy and satin metallic sheen."
+    },
+    {
+      "id": "acetate_classics",
+      "label": "Acetate Classics",
+      "enabled": true,
+      "rule": "Highlight deep tortoiseshell and hand-polished acetate luster with clean edge highlights that delineate bevelled temple contours and hinges."
+    },
+    {
+      "id": "aviator_navigator",
+      "label": "Aviator & Navigator",
+      "enabled": true,
+      "rule": "Position the dual-bridge frame at eye level to accent the brow bar architecture, nose pad transparency, and tear-drop lens silhouette."
+    },
+    {
+      "id": "cateye_sculptural",
+      "label": "Cat-Eye & Sculptural",
+      "enabled": true,
+      "rule": "Emphasize dramatic upswept corner angles and multi-layer acetate lamination, keeping temple detailing and geometric facet reflections crisp."
+    }
+  ],
+  "styles": [
+    {
+      "id": "macro_detail",
+      "label": "Macro Detail",
+      "group": "Detail",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Extreme macro focus on temple hinge engraving, titanium nose pad filigree, and authentic lens beveling with artistic shallow depth of field."
+    },
+    {
+      "id": "flatlay",
+      "label": "FlatLay",
+      "group": "Editorial",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Arranged cleanly alongside textured raw linen, natural pebble stones, and minimal spectacle case under soft daylight."
+    },
+    {
+      "id": "studio_high_key",
+      "label": "Studio High-Key",
+      "group": "Catalogue",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Commercial optical photography on a reflective white acrylic pedestal with polarising filters eliminating unwanted lens glare."
+    },
+    {
+      "id": "boutique_display",
+      "label": "Boutique Display",
+      "group": "Luxury Boutique",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Resting on a premium backlit optical boutique display stand with ambient diffused shelving and brushed brass fixtures."
+    },
+    {
+      "id": "editorial_campaign",
+      "label": "Editorial Campaign",
+      "group": "Lookbook On-Model",
+      "enabled": true,
+      "needsPerson": true,
+      "appliesTo": ["all"],
+      "rule": "Editorial lookbook portrait with natural facial framing, showcasing bridge fit, pupillary alignment, and anti-reflective lens clarity."
+    },
+    {
+      "id": "lifestyle_portrait",
+      "label": "Lifestyle Portrait",
+      "group": "Contemporary Lifestyle",
+      "enabled": true,
+      "needsPerson": true,
+      "appliesTo": ["all"],
+      "rule": "Modern lifestyle portrait in an architecturally lit sunroom, capturing natural everyday elegance and clear prescription vision."
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "pure_white",
+      "label": "Pure White",
+      "rule": "Glare-free seamless optical white background with subtle contact shadow beneath temple tips and bridge."
+    },
+    {
+      "id": "warm_beige",
+      "label": "Warm Beige",
+      "rule": "Neutral warm beige sand backdrop providing soothing warmth that flatters gold wire frames and amber acetate."
+    },
+    {
+      "id": "travertine",
+      "label": "Travertine",
+      "rule": "Honed porous travertine stone base providing earthy architectural texture beneath polished spectacle lenses."
+    },
+    {
+      "id": "atelier",
+      "label": "Atelier",
+      "rule": "Optician design workshop setting with subtle wooden lens testing trays and soft diffused window illumination."
+    }
+  ],
+  "lighting": [
+    {
+      "id": "soft_studio",
+      "label": "Soft Studio",
+      "rule": "3200K dual diffusion banks positioned to eliminate hotspot reflections across curved prescription lenses."
+    },
+    {
+      "id": "chiaroscuro",
+      "label": "Chiaroscuro",
+      "rule": "Dramatic directional edge-lighting that carves sculptural silhouettes along acetate rims while maintaining anti-glare lens clarity."
+    },
+    {
+      "id": "gallery_daylight",
+      "label": "Gallery Daylight",
+      "rule": "Diffused indirect daylight that renders authentic acetate translucency and tortoiseshell depth without harsh glare."
+    }
+  ],
+  "presets": [
+    {
+      "id": "titanium_optical",
+      "label": "Titanium Optical Preset",
+      "rule": "Calibrated specifically for multi-coated prescription and sun lenses, suppressing artificial flares while enhancing metal temple definition."
+    }
+  ],
+  "fineTune": [
+    {
+      "id": "specularity",
+      "label": "Specularity",
+      "levels": [
+        { "value": 1, "rule": "Matte sandblasted titanium finish with soft highlight roll-off." },
+        { "value": 2, "rule": "Hand-polished acetate gloss with smooth specular rim lines." },
+        { "value": 3, "rule": "High-reflection luxury metallic sheen on temple wires and bridge." }
+      ]
+    },
+    {
+      "id": "anti_reflective",
+      "label": "Anti-Reflective Coating",
+      "levels": [
+        { "value": 1, "rule": "Standard clear glass transmission with faint natural reflections." },
+        { "value": 2, "rule": "Green-violet multi-coated anti-reflective treatment rendering lenses crystal clear." },
+        { "value": 3, "rule": "Complete anti-glare suppression showcasing eyes or surface through lenses with zero distortion." }
+      ]
+    }
+  ]
+}

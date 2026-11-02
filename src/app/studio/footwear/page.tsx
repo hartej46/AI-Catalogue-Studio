@@ -16,44 +16,22 @@ import {
   Gem,
 } from "lucide-react";
 
-interface FootwearCategory {
-  id: string;
-  title: string;
-  subtitle: string;
-  tag: string;
-  image: string;
-}
+import footwearConfig from "@/config/footwear.json";
 
-const categories: FootwearCategory[] = [
-  {
-    id: "formal_dress",
-    title: "Formal & Dress",
-    subtitle: "Oxfords, monk straps, brogues, and derby...",
-    tag: "HAND-BURNISHED",
-    image: "/images/hero_multi_craft.jpg",
-  },
-  {
-    id: "bridal_ethnic",
-    title: "Bridal & Ethnic",
-    subtitle: "Handcrafted juttis with intricate gold thread and...",
-    tag: "ZARDOZI WORK",
-    image: "/images/footwear_craft.jpg",
-  },
-  {
-    id: "boots_suede",
-    title: "Boots & Suede",
-    subtitle: "Handcrafted espresso suede and Goodyear...",
-    tag: "CHELSEA / ANKLE",
-    image: "/images/footwear_craft.jpg",
-  },
-  {
-    id: "luxury_sneakers",
-    title: "Luxury Sneakers",
-    subtitle: "Contemporary low-top luxury leather trainers.",
-    tag: "NAPPA LEATHER",
-    image: "/images/hero_multi_craft.jpg",
-  },
-];
+const categoryImages: Record<string, { image: string; tag: string }> = {
+  formal_dress: { image: "/images/hero_multi_craft.jpg", tag: "HAND-BURNISHED" },
+  bridal_ethnic: { image: "/images/footwear_craft.jpg", tag: "ZARDOZI WORK" },
+  boots_suede: { image: "/images/footwear_craft.jpg", tag: "CHELSEA / ANKLE" },
+  luxury_sneakers: { image: "/images/hero_multi_craft.jpg", tag: "NAPPA LEATHER" },
+};
+
+const categories = footwearConfig.categories.map((cat) => ({
+  id: cat.id,
+  title: cat.label,
+  subtitle: cat.rule,
+  tag: categoryImages[cat.id]?.tag || "ATELIER GRADE",
+  image: categoryImages[cat.id]?.image || "/images/footwear_craft.jpg",
+}));
 
 export default function FootwearStep1Page() {
   const router = useRouter();

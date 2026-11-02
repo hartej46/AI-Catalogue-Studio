@@ -1,0 +1,160 @@
+{
+  "domain": "jewellery",
+  "categories": [
+    {
+      "id": "necklaces",
+      "label": "Necklaces & Chokers",
+      "enabled": true,
+      "rule": "Capture the necklace draped gracefully along natural collarbone curvature or on a sculpted plinth, preserving authentic foil backing, unblemished stones, and handcrafted enamel work."
+    },
+    {
+      "id": "earrings",
+      "label": "Earrings & Jhumkas",
+      "enabled": true,
+      "rule": "Position the earrings upright or suspended with a subtle shadow drop, keeping every prong, micro-pavé facet, and dangling pearl cluster in sharp focus."
+    },
+    {
+      "id": "bangles",
+      "label": "Bangles & Kadas",
+      "enabled": true,
+      "rule": "Show the kadas angled to display exterior meenakari carvings and bezel-set gemstones, maintaining the exact cylindrical gauge and antique gold patina."
+    },
+    {
+      "id": "rings",
+      "label": "Rings & Maang Teeka",
+      "enabled": true,
+      "rule": "Frame in a sharp macro composition that captures the centre stone crown and delicate filigree chain without distorting ring band thickness or metal luster."
+    }
+  ],
+  "styles": [
+    {
+      "id": "macro",
+      "label": "Macro",
+      "group": "Detail",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Shot with a 100mm macro lens at f/8 with a razor-thin depth of field, highlighting microscopic metal engraving, stone facets, and authentic hand-set prongs."
+    },
+    {
+      "id": "flatlay",
+      "label": "FlatLay",
+      "group": "Editorial",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Overhead 90-degree top-down perspective on textured raw linen with organic accents, styled with soft daylight diffusion and subtle natural falloff."
+    },
+    {
+      "id": "studio",
+      "label": "Studio",
+      "group": "Catalogue",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Classic commercial studio setup against a pristine neutral backdrop with balanced twin softboxes for edge-to-edge sharpness and zero colour cast."
+    },
+    {
+      "id": "shop_display",
+      "label": "Shop Display",
+      "group": "Luxury Boutique",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Staged on an illuminated luxury boutique glass plinth with warm velvet risers and architectural brass accents, creating an aspirational storefront atmosphere."
+    },
+    {
+      "id": "indian_bridal",
+      "label": "Indian Bridal",
+      "group": "Bridal Editorial",
+      "enabled": true,
+      "needsPerson": true,
+      "appliesTo": ["all"],
+      "rule": "Rich royal Indian bridal mood featuring crimson silk zardozi textiles, warm ambient temple glow, and dramatic ceremonial side-lighting."
+    },
+    {
+      "id": "modern_wear",
+      "label": "Modern Wear",
+      "group": "Contemporary Lifestyle",
+      "enabled": true,
+      "needsPerson": true,
+      "appliesTo": ["all"],
+      "rule": "Contemporary high-fashion editorial on a chic linen ensemble with clean architectural daylight, capturing effortless luxury for modern daily wear."
+    },
+    {
+      "id": "vintage_sepia",
+      "label": "Vintage Sepia",
+      "group": "Archival",
+      "enabled": false,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Muted sepia-toned archival treatment reminiscent of early 20th-century royal portraiture."
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "crimson_velvet",
+      "label": "Crimson Velvet",
+      "rule": "Resting upon plush royal crimson silk velvet that absorbs stray reflections and accentuates 22K yellow gold brilliance."
+    },
+    {
+      "id": "warm_travertine",
+      "label": "Warm Travertine",
+      "rule": "Staged on rough-hewn ivory travertine stone with subtle natural pits and warm earthy textures."
+    },
+    {
+      "id": "silk_brocade",
+      "label": "Silk Brocade",
+      "rule": "Draped across handwoven Banarasi silk brocade with subdued gold zari weaves adding subtle regal depth."
+    },
+    {
+      "id": "dark_charcoal",
+      "label": "Dark Charcoal",
+      "rule": "Mounted against a matte dark charcoal volcanic slate surface for high-contrast dramatic pop."
+    }
+  ],
+  "lighting": [
+    {
+      "id": "soft_studio",
+      "label": "Soft Studio",
+      "rule": "Diffused large softbox overhead key light at 3200K, preserving true-to-tone metal warmth with gentle specular highlights."
+    },
+    {
+      "id": "chiaroscuro",
+      "label": "Chiaroscuro",
+      "rule": "Directional cross-light with pronounced deep shadows, producing dramatic sculptural relief along gemstone facets."
+    },
+    {
+      "id": "golden_hour",
+      "label": "Golden Hour",
+      "rule": "Low-angle warm raking sunlight evoking golden hour, making faceted uncut diamonds sparkle with rich golden amber flares."
+    }
+  ],
+  "presets": [
+    {
+      "id": "polki_emerald_choker",
+      "label": "Polki Emerald Choker Preset",
+      "rule": "Calibrated specially for uncut flat diamonds and green beryl gemstones, balancing silver foil reflectivity with emerald hue saturation."
+    }
+  ],
+  "fineTune": [
+    {
+      "id": "specularity",
+      "label": "Specularity",
+      "levels": [
+        { "value": 1, "rule": "Subtle brushed metal sheen with controlled highlights." },
+        { "value": 2, "rule": "Balanced commercial gloss with crisp diamond sparkle." },
+        { "value": 3, "rule": "High-specular editorial dazzle with intense faceted reflections." }
+      ]
+    },
+    {
+      "id": "shadow_warmth",
+      "label": "Shadow Warmth",
+      "levels": [
+        { "value": 1, "rule": "Neutral cool studio shadows for catalog clarity." },
+        { "value": 2, "rule": "Warm amber shadow falloff characteristic of Indian bridal photography." },
+        { "value": 3, "rule": "Deep rich terracotta shadow tones for dramatic regal staging." }
+      ]
+    }
+  ]
+}

@@ -18,90 +18,97 @@ import {
   Coins,
   Store,
   Lock,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
 
-interface BackgroundOption {
-  id: string;
-  name: string;
-  colorClass: string;
-}
+import opticalConfig from "@/config/optical.json";
+import sizesConfig from "@/config/sizes.json";
+import UploadBlock, { type UploadedPhotoData } from "@/components/UploadBlock";
 
-const backgrounds: BackgroundOption[] = [
-  { id: "pure_white", name: "Pure White", colorClass: "bg-white border border-[#E0D9CC]" },
-  { id: "warm_beige", name: "Warm Beige", colorClass: "bg-[#F3ECE1] border border-[#DDD5C6]" },
-  { id: "travertine", name: "Travertine", colorClass: "bg-[#E6DEC9] border border-[#D5CCA8]" },
-  { id: "atelier", name: "Atelier", colorClass: "bg-[#ECE6DC] border border-[#D9D1C5]" },
-];
+const bgColorClasses: Record<string, string> = {
+  pure_white: "bg-white border border-[#E0D9CC]",
+  warm_beige: "bg-[#F3ECE1] border border-[#DDD5C6]",
+  travertine: "bg-[#E6DEC9] border border-[#D5CCA8]",
+  atelier: "bg-[#ECE6DC] border border-[#D9D1C5]",
+};
 
-interface LightingOption {
-  id: string;
-  title: string;
-  desc: string;
-  icon: typeof Sun;
-}
+const backgrounds = opticalConfig.backgrounds.map((bg) => ({
+  id: bg.id,
+  name: bg.label,
+  colorClass: bgColorClasses[bg.id] || "bg-[#F3ECE1] border border-[#DDD5C6]",
+}));
 
-const lightings: LightingOption[] = [
-  {
-    id: "soft_studio",
-    title: "Soft Studio",
-    desc: "3200K Balance",
-    icon: Sun,
-  },
-  {
-    id: "chiaroscuro",
-    title: "Chiaroscuro",
-    desc: "Deep Shadows",
-    icon: Moon,
-  },
-  {
-    id: "gallery_daylight",
-    title: "Gallery Daylight",
-    desc: "North Facade",
-    icon: Sunrise,
-  },
-];
+const lightingIcons: Record<string, typeof Sun> = {
+  soft_studio: Sun,
+  chiaroscuro: Moon,
+  gallery_daylight: Sunrise,
+};
 
-interface RatioOption {
-  id: string;
-  ratio: string;
-  title: string;
-  desc: string;
-  isBest?: boolean;
-}
+const lightings = opticalConfig.lighting.map((l) => ({
+  id: l.id,
+  title: l.label,
+  desc: l.rule,
+  icon: lightingIcons[l.id] || Sun,
+}));
 
-const ratios: RatioOption[] = [
-  {
-    id: "3_4",
-    ratio: "3:4",
-    title: "Lookbook",
-    desc: "Editorial",
-    isBest: true,
-  },
-  {
-    id: "1_1",
-    ratio: "1:1",
-    title: "Square",
-    desc: "Instagram Feed",
-  },
-  {
-    id: "9_16",
-    ratio: "9:16",
-    title: "Story / Reel",
-    desc: "Full Screen",
-  },
-  {
-    id: "16_9",
-    ratio: "16:9",
-    title: "Catalogue",
-    desc: "Hero Header",
-  },
-];
+const ratios = sizesConfig.map((s) => ({
+  id: s.id,
+  ratio: s.aspectRatio,
+  title: s.label.split(" (")[0],
+  desc: s.sublabel ?? "",
+  isBest: s.id === "3_4",
+}));
+
 
 export default function OpticalStep3Page() {
   const router = useRouter();
   const [selectedBg, setSelectedBg] = useState("warm_beige");
   const [selectedLighting, setSelectedLighting] = useState("soft_studio");
   const [selectedRatio, setSelectedRatio] = useState("3_4");
+  const [uploadedPhoto, setUploadedPhoto] = useState<UploadedPhotoData | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const canGenerate = uploadedPhoto !== null;
+
+  const handleGenerate = async () => {
+    if (!uploadedPhoto || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const res = await fetch("/api/create-job", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          domain: "optical",
+          categoryId: "titanium_rimless",
+          styleId: "macro_detail",
+          backgroundId: selectedBg,
+          lightingId: selectedLighting,
+          ratioId: selectedRatio,
+          presetId: "titanium_optical",
+          fineTune: { specularity: 2, anti_reflective: 2 },
+          productName: uploadedPhoto.productName || null,
+          originalPath: uploadedPhoto.originalPath,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.jobId) {
+        router.push(`/studio/optical/step-4?jobId=${data.jobId}`);
+      } else {
+        setSubmitError(data.error || "Failed to start generation.");
+        setIsSubmitting(false);
+      }
+    } catch (err: any) {
+      setSubmitError(err?.message || "Network error. Please try again.");
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col justify-between max-w-md mx-auto px-4 py-3.5 shadow-sm border-x border-[#EFEAE1] pb-24">
@@ -285,6 +292,12 @@ export default function OpticalStep3Page() {
           </div>
         </div>
 
+        {/* 4. Product Photo Upload */}
+        <UploadBlock
+          onUploadChange={setUploadedPhoto}
+          domainLabel="Optical"
+        />
+
         {/* Preset Fine-tune Bar */}
         <div className="bg-[#F5F1E8] border border-[#E7E0D3] rounded-xl p-3 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -329,13 +342,42 @@ export default function OpticalStep3Page() {
 
         {/* Action Button & Note */}
         <div className="space-y-1.5 pt-1">
-          <Link
-            href="/studio/optical/step-4"
-            className="flex items-center justify-center gap-2 w-full bg-[#5B5226] hover:bg-[#49421D] text-white py-3.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-all shadow-md active:scale-[0.99]"
+          {submitError && (
+            <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-800 rounded-xl p-2.5 text-xs">
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+              <span>{submitError}</span>
+            </div>
+          )}
+
+          {!canGenerate && (
+            <div className="flex items-center justify-center gap-1.5 bg-[#F7F2E7] border border-[#E8DFBE] rounded-xl py-2.5 px-3 text-[10px] text-[#7A6A2E] font-semibold">
+              <Lock className="w-3 h-3" />
+              <span>Upload a product photo above to enable generation</span>
+            </div>
+          )}
+
+          <button
+            type="button"
+            disabled={!canGenerate || isSubmitting}
+            onClick={handleGenerate}
+            className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-all shadow-md ${
+              canGenerate && !isSubmitting
+                ? "bg-[#5B5226] hover:bg-[#49421D] text-white active:scale-[0.99] cursor-pointer"
+                : "bg-[#D0C9BB] text-[#8F897E] cursor-not-allowed shadow-none"
+            }`}
           >
-            <Sparkles className="w-4 h-4" />
-            <span>GENERATE SHOT — 1 CREDIT</span>
-          </Link>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>DISPATCHING ATELIER JOB...</span>
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-4 h-4" />
+                <span>GENERATE SHOT — 1 CREDIT</span>
+              </>
+            )}
+          </button>
           <div className="flex items-center justify-center gap-1 text-[10px] text-[#6E675B] font-medium">
             <Lock className="w-3 h-3 text-[#5B5226]" />
             <span>1 CREDIT DEDUCTED ONLY ON APPROVAL</span>

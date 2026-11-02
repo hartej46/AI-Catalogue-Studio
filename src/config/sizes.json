@@ -1,0 +1,72 @@
+[
+  {
+    "id": "1_1",
+    "label": "Square (1:1)",
+    "sublabel": "Instagram Feed & Marketplace",
+    "aspectRatio": "1:1",
+    "previewPixels": {
+      "width": 1080,
+      "height": 1080
+    },
+    "finalPixels": {
+      "width": 4096,
+      "height": 4096
+    }
+  },
+  {
+    "id": "4_5",
+    "label": "Portrait (4:5)",
+    "sublabel": "Max Engagement Feed",
+    "aspectRatio": "4:5",
+    "previewPixels": {
+      "width": 864,
+      "height": 1080
+    },
+    "finalPixels": {
+      "width": 3277,
+      "height": 4096
+    }
+  },
+  {
+    "id": "3_4",
+    "label": "Catalogue (3:4)",
+    "sublabel": "Lookbook & Editorial Best",
+    "aspectRatio": "3:4",
+    "previewPixels": {
+      "width": 810,
+      "height": 1080
+    },
+    "finalPixels": {
+      "width": 3072,
+      "height": 4096
+    }
+  },
+  {
+    "id": "9_16",
+    "label": "Story / Reel (9:16)",
+    "sublabel": "Full Screen Mobile",
+    "aspectRatio": "9:16",
+    "previewPixels": {
+      "width": 608,
+      "height": 1080
+    },
+    "finalPixels": {
+      "width": 2304,
+      "height": 4096
+    }
+  },
+  {
+    "id": "16_9",
+    "label": "Catalogue Hero (16:9)",
+    "sublabel": "Web Banner Header",
+    "aspectRatio": "16:9",
+    "previewPixels": {
+      "width": 1080,
+      "height": 608
+    },
+    "finalPixels": {
+      "width": 4096,
+      "height": 2304
+    }
+  }
+]

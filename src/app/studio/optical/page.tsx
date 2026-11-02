@@ -16,44 +16,22 @@ import {
   Store,
 } from "lucide-react";
 
-interface OpticalCategory {
-  id: string;
-  title: string;
-  subtitle: string;
-  tag: string;
-  image: string;
-}
+import opticalConfig from "@/config/optical.json";
 
-const categories: OpticalCategory[] = [
-  {
-    id: "titanium_rimless",
-    title: "Titanium & Rimless",
-    subtitle: "Modern minimalist Japanese titanium frame...",
-    tag: "BETA-TI",
-    image: "/images/optical_craft.jpg",
-  },
-  {
-    id: "acetate_classics",
-    title: "Acetate Classics",
-    subtitle: "Classic handcrafted tortoiseshell and deep...",
-    tag: "HAND-POLISHED",
-    image: "/images/hero_multi_craft.jpg",
-  },
-  {
-    id: "aviator_navigator",
-    title: "Aviator & Navigator",
-    subtitle: "Architectural double-bridge optical frames an...",
-    tag: "DUAL-BRIDGE",
-    image: "/images/optical_craft.jpg",
-  },
-  {
-    id: "cateye_sculptural",
-    title: "Cat-Eye & Sculptural",
-    subtitle: "High-fashion statement beveled acetate and...",
-    tag: "BEVELED",
-    image: "/images/hero_multi_craft.jpg",
-  },
-];
+const categoryImages: Record<string, { image: string; tag: string }> = {
+  titanium_rimless: { image: "/images/optical_craft.jpg", tag: "BETA-TI" },
+  acetate_classics: { image: "/images/hero_multi_craft.jpg", tag: "HAND-POLISHED" },
+  aviator_navigator: { image: "/images/optical_craft.jpg", tag: "DUAL-BRIDGE" },
+  cateye_sculptural: { image: "/images/hero_multi_craft.jpg", tag: "BEVELED" },
+};
+
+const categories = opticalConfig.categories.map((cat) => ({
+  id: cat.id,
+  title: cat.label,
+  subtitle: cat.rule,
+  tag: categoryImages[cat.id]?.tag || "ATELIER GRADE",
+  image: categoryImages[cat.id]?.image || "/images/optical_craft.jpg",
+}));
 
 export default function OpticalStep1Page() {
   const router = useRouter();

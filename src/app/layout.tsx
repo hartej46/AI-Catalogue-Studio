@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "Computational commercial photography for Indian jewellers, bespoke footwear shoemakers, and heritage optical boutiques.",
 };
 
+import { AuthProvider } from "@/lib/auth-context";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +29,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full bg-[#FDF9F3] text-[#1C1917] flex flex-col font-sans">
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

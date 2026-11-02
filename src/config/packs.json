@@ -1,0 +1,29 @@
+[
+  {
+    "id": "starter",
+    "label": "Starter",
+    "credits": 25,
+    "priceInr": 1499,
+    "perPhoto": 60,
+    "popular": false,
+    "description": "Great for trying the platform"
+  },
+  {
+    "id": "boutique",
+    "label": "Boutique",
+    "credits": 100,
+    "priceInr": 4999,
+    "perPhoto": 50,
+    "popular": true,
+    "description": "Best value for small collections"
+  },
+  {
+    "id": "maison",
+    "label": "Maison",
+    "credits": 300,
+    "priceInr": 11999,
+    "perPhoto": 40,
+    "popular": false,
+    "description": "Wholesale & large catalogue runs"
+  }
+]

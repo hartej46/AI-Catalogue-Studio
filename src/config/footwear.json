@@ -1,0 +1,151 @@
+{
+  "domain": "footwear",
+  "categories": [
+    {
+      "id": "formal_dress",
+      "label": "Formal & Dress",
+      "enabled": true,
+      "rule": "Position the formal shoe at a three-quarter hero angle, showcasing the toe cap curvature, leather vamp, and precise welt stitching without altering the leather patina."
+    },
+    {
+      "id": "bridal_ethnic",
+      "label": "Bridal & Ethnic",
+      "enabled": true,
+      "rule": "Stage the handcrafted jutti paired or angled gracefully to highlight metallic dabka, zardozi embroidery, and soft cushioned insole detail."
+    },
+    {
+      "id": "boots_suede",
+      "label": "Boots & Suede",
+      "enabled": true,
+      "rule": "Capture the boot upright to exhibit shaft height, elastic gusset tension, and velvety suede nap under soft directional rim lighting."
+    },
+    {
+      "id": "luxury_sneakers",
+      "label": "Luxury Sneakers",
+      "enabled": true,
+      "rule": "Frame in a dynamic low-angle profile that showcases sole thickness, heel counter geometry, and smooth leather panel construction."
+    }
+  ],
+  "styles": [
+    {
+      "id": "macro_detail",
+      "label": "Macro Detail",
+      "group": "Detail",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Extreme close-up shot focusing on the welt stitch count, leather grain pores, and burnished heel stack with soft background bokeh."
+    },
+    {
+      "id": "flatlay",
+      "label": "FlatLay",
+      "group": "Editorial",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Top-down geometric flatlay on raw unbleached linen with artisan shoemaking horn and limestone elements arranged with intentional negative space."
+    },
+    {
+      "id": "studio_high_key",
+      "label": "Studio High-Key",
+      "group": "Catalogue",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Crisp commercial e-commerce lighting on a seamless reflective travertine surface, producing an ultra-clean shadow drop and true leather colour fidelity."
+    },
+    {
+      "id": "boutique_display",
+      "label": "Boutique Display",
+      "group": "Luxury Boutique",
+      "enabled": true,
+      "needsPerson": false,
+      "appliesTo": ["all"],
+      "rule": "Staged on a bespoke boutique backlit shelf with warm ambient shelving glow and dark wood accents that emphasize premium craftsmanship."
+    },
+    {
+      "id": "editorial_campaign",
+      "label": "Editorial Campaign",
+      "group": "Lookbook On-Model",
+      "enabled": true,
+      "needsPerson": true,
+      "appliesTo": ["all"],
+      "rule": "On-model high-fashion lookbook capture showing tailored trousers falling perfectly above the shoe collar in natural morning architectural light."
+    },
+    {
+      "id": "lifestyle_on_street",
+      "label": "Lifestyle On-Street",
+      "group": "Urban Walk",
+      "enabled": true,
+      "needsPerson": true,
+      "appliesTo": ["all"],
+      "rule": "Street lifestyle shot on sun-warmed European flagstone with soft motion perspective and realistic urban pavement reflections."
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "pure_white",
+      "label": "Pure White",
+      "rule": "Pure seamless commercial studio white cyc with calibrated contact shadow under the outsole."
+    },
+    {
+      "id": "warm_beige",
+      "label": "Warm Beige",
+      "rule": "Warm sandstone beige background providing high-end editorial warmth for tan and espresso leather tones."
+    },
+    {
+      "id": "travertine",
+      "label": "Travertine",
+      "rule": "A solid honed travertine stone slab with subtle mineral veins adding architectural luxury to footwear silhouettes."
+    },
+    {
+      "id": "atelier",
+      "label": "Atelier",
+      "rule": "An authentic artisan shoemaker workshop environment with subtle timber workbenches and soft natural window daylight."
+    }
+  ],
+  "lighting": [
+    {
+      "id": "soft_studio",
+      "label": "Soft Studio",
+      "rule": "Balanced 3200K studio softbox illumination preventing harsh glare on burnished leather toe caps."
+    },
+    {
+      "id": "chiaroscuro",
+      "label": "Chiaroscuro",
+      "rule": "Moody side-raking lighting that creates deep sculptured shadow falloff beneath the shoe arch and welt edges."
+    },
+    {
+      "id": "gallery_daylight",
+      "label": "Gallery Daylight",
+      "rule": "Diffused north-facing gallery daylight providing even, naturalistic luminosity across all leather panels."
+    }
+  ],
+  "presets": [
+    {
+      "id": "burnished_leather",
+      "label": "Burnished Leather Preset",
+      "rule": "Calibrated specifically for hand-patinated calfskin and cordovan leather, enhancing rich gradient burnishing without blowing out highlights."
+    }
+  ],
+  "fineTune": [
+    {
+      "id": "specularity",
+      "label": "Specularity",
+      "levels": [
+        { "value": 1, "rule": "Matte oil-tanned finish with low surface reflection." },
+        { "value": 2, "rule": "Classic beeswax polish with natural satin sheen." },
+        { "value": 3, "rule": "Mirror gloss toe cap finish with sharp highlight points." }
+      ]
+    },
+    {
+      "id": "leather_warmth",
+      "label": "Leather Warmth",
+      "levels": [
+        { "value": 1, "rule": "Neutral studio color temperature preserving true dyed pigment." },
+        { "value": 2, "rule": "Warm chestnut amber grading evoking artisanal vegetable tanning." },
+        { "value": 3, "rule": "Deep antique mahogany tones with rich warm shadows." }
+      ]
+    }
+  ]
+}

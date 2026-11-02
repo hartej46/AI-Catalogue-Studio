@@ -4,7 +4,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { CreditsPill } from "./CreditsPill";
+import { useAuth } from "@/lib/auth-context";
 
 export interface TopBarProps {
   credits?: number;
@@ -18,7 +20,7 @@ export interface TopBarProps {
 }
 
 export const TopBar: React.FC<TopBarProps> = ({
-  credits = 3,
+  credits: explicitCredits,
   avatarUrl = "/images/jewellery_craft.jpg",
   avatarAlt = "Atelier Merchant Avatar",
   showBack = false,
@@ -27,6 +29,18 @@ export const TopBar: React.FC<TopBarProps> = ({
   onAvatarClick,
   className = "",
 }) => {
+  const router = useRouter();
+  const { credits: authCredits } = useAuth();
+  const displayCredits = explicitCredits !== undefined ? explicitCredits : authCredits;
+
+  const handleCreditsClick = () => {
+    if (onCreditsClick) {
+      onCreditsClick();
+    } else {
+      router.push("/credits");
+    }
+  };
+
   return (
     <header
       className={`sticky top-0 z-40 w-full bg-[#FDF9F3]/95 backdrop-blur-md border-b border-[#E8E6DF] px-4 py-3 flex items-center justify-between transition-colors ${className}`}
@@ -61,7 +75,7 @@ export const TopBar: React.FC<TopBarProps> = ({
 
       {/* Right: Gold Credits Pill & Round Profile Avatar */}
       <div className="flex items-center gap-2.5">
-        <CreditsPill credits={credits} onClick={onCreditsClick} />
+        <CreditsPill credits={displayCredits} onClick={handleCreditsClick} />
 
         <button
           onClick={onAvatarClick}

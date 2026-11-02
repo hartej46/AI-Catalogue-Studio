@@ -16,51 +16,23 @@ import {
   Store,
 } from "lucide-react";
 
-interface OpticalStyle {
-  id: string;
-  title: string;
-  subtitle: string;
-  image: string;
-}
+import opticalConfig from "@/config/optical.json";
 
-const styles: OpticalStyle[] = [
-  {
-    id: "macro_detail",
-    title: "Macro Detail",
-    subtitle: "Extreme hinge and lens engraving detail",
-    image: "/images/optical_craft.jpg",
-  },
-  {
-    id: "flatlay",
-    title: "FlatLay",
-    subtitle: "Top-down arrangement on raw linen & stone",
-    image: "/images/hero_multi_craft.jpg",
-  },
-  {
-    id: "studio_high_key",
-    title: "Studio High-Key",
-    subtitle: "Clean reflective podium commercial lighting",
-    image: "/images/optical_craft.jpg",
-  },
-  {
-    id: "boutique_display",
-    title: "Boutique Display",
-    subtitle: "In-store backlit luxury display presentation",
-    image: "/images/hero_multi_craft.jpg",
-  },
-  {
-    id: "editorial_campaign",
-    title: "Editorial Campaign",
-    subtitle: "High-fashion model studio look",
-    image: "/images/optical_craft.jpg",
-  },
-  {
-    id: "lifestyle_portrait",
-    title: "Lifestyle Portrait",
-    subtitle: "Contemporary professional face fit",
-    image: "/images/hero_multi_craft.jpg",
-  },
-];
+const styleImages: Record<string, string> = {
+  macro_detail: "/images/optical_craft.jpg",
+  flatlay: "/images/hero_multi_craft.jpg",
+  studio_high_key: "/images/optical_craft.jpg",
+  boutique_display: "/images/hero_multi_craft.jpg",
+  editorial_campaign: "/images/optical_craft.jpg",
+  lifestyle_portrait: "/images/hero_multi_craft.jpg",
+};
+
+const styles = opticalConfig.styles.map((s) => ({
+  id: s.id,
+  title: s.label,
+  subtitle: s.rule,
+  image: styleImages[s.id] || "/images/optical_craft.jpg",
+}));
 
 export default function OpticalStep2Page() {
   const router = useRouter();

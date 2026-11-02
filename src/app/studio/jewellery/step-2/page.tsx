@@ -13,51 +13,23 @@ import {
   MessageCircle,
 } from "lucide-react";
 
-interface ShotStyle {
-  id: string;
-  title: string;
-  subtitle: string;
-  image: string;
-}
+import jewelleryConfig from "@/config/jewellery.json";
 
-const styles: ShotStyle[] = [
-  {
-    id: "macro",
-    title: "Macro",
-    subtitle: "Extreme detail, piece only",
-    image: "/images/hero_multi_craft.jpg",
-  },
-  {
-    id: "flatlay",
-    title: "FlatLay",
-    subtitle: "Top-down arrangement on...",
-    image: "/images/bangles_craft.jpg",
-  },
-  {
-    id: "studio",
-    title: "Studio",
-    subtitle: "Clean studio product shot",
-    image: "/images/jhumkas_craft.jpg",
-  },
-  {
-    id: "shop_display",
-    title: "Shop Display",
-    subtitle: "In-store display shelf...",
-    image: "/images/jewellery_craft.jpg",
-  },
-  {
-    id: "indian_bridal",
-    title: "Indian Bridal",
-    subtitle: "Traditional bridal editorial...",
-    image: "/images/bangles_craft.jpg",
-  },
-  {
-    id: "modern_wear",
-    title: "Modern Wear",
-    subtitle: "Contemporary lifestyle...",
-    image: "/images/footwear_craft.jpg",
-  },
-];
+const styleImages: Record<string, string> = {
+  macro: "/images/hero_multi_craft.jpg",
+  flatlay: "/images/bangles_craft.jpg",
+  studio: "/images/jhumkas_craft.jpg",
+  shop_display: "/images/jewellery_craft.jpg",
+  indian_bridal: "/images/bangles_craft.jpg",
+  modern_wear: "/images/footwear_craft.jpg",
+};
+
+const styles = jewelleryConfig.styles.map((style) => ({
+  id: style.id,
+  title: style.label,
+  subtitle: style.rule,
+  image: styleImages[style.id] || "/images/jewellery_craft.jpg",
+}));
 
 export default function JewelleryStep2Page() {
   const router = useRouter();

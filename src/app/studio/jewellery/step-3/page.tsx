@@ -14,106 +14,97 @@ import {
   Sliders,
   Headphones,
   ShieldCheck,
+  Lock,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
 
-interface SurfaceOption {
-  id: string;
-  name: string;
-  image: string;
-}
+import jewelleryConfig from "@/config/jewellery.json";
+import sizesConfig from "@/config/sizes.json";
+import UploadBlock, { type UploadedPhotoData } from "@/components/UploadBlock";
 
-const surfaces: SurfaceOption[] = [
-  {
-    id: "crimson_velvet",
-    name: "Crimson Velvet",
-    image: "/images/bangles_craft.jpg",
-  },
-  {
-    id: "warm_travertine",
-    name: "Warm...",
-    image: "/images/hero_multi_craft.jpg",
-  },
-  {
-    id: "silk_brocade",
-    name: "Silk Brocade",
-    image: "/images/footwear_craft.jpg",
-  },
-  {
-    id: "dark_charcoal",
-    name: "Dark Charcoal",
-    image: "/images/jewellery_craft.jpg",
-  },
-];
+const backgroundImages: Record<string, string> = {
+  crimson_velvet: "/images/bangles_craft.jpg",
+  warm_travertine: "/images/hero_multi_craft.jpg",
+  silk_brocade: "/images/footwear_craft.jpg",
+  dark_charcoal: "/images/jewellery_craft.jpg",
+};
 
-interface LightingOption {
-  id: string;
-  title: string;
-  desc: string;
-  icon: typeof Sun;
-}
+const surfaces = jewelleryConfig.backgrounds.map((bg) => ({
+  id: bg.id,
+  name: bg.label,
+  image: backgroundImages[bg.id] || "/images/jewellery_craft.jpg",
+}));
 
-const lightings: LightingOption[] = [
-  {
-    id: "soft_studio",
-    title: "Soft Studio",
-    desc: "Diffused, true-to-tone metal",
-    icon: Sun,
-  },
-  {
-    id: "chiaroscuro",
-    title: "Chiaroscuro",
-    desc: "Dramatic edge contrast",
-    icon: Moon,
-  },
-  {
-    id: "golden_hour",
-    title: "Golden Hour",
-    desc: "Warm diamond sparkle",
-    icon: Sunrise,
-  },
-];
+const lightingIcons: Record<string, typeof Sun> = {
+  soft_studio: Sun,
+  chiaroscuro: Moon,
+  golden_hour: Sunrise,
+};
 
-interface RatioOption {
-  id: string;
-  ratio: string;
-  label: string;
-  sub: string;
-  best?: boolean;
-}
+const lightings = jewelleryConfig.lighting.map((l) => ({
+  id: l.id,
+  title: l.label,
+  desc: l.rule,
+  icon: lightingIcons[l.id] || Sun,
+}));
 
-const ratios: RatioOption[] = [
-  {
-    id: "3_4",
-    ratio: "3:4",
-    label: "Catalogue",
-    sub: "Lookbook",
-    best: true,
-  },
-  {
-    id: "1_1",
-    ratio: "1:1",
-    label: "Square",
-    sub: "Instagram Feed",
-  },
-  {
-    id: "9_16",
-    ratio: "9:16",
-    label: "Story / Reel",
-    sub: "Full Screen",
-  },
-  {
-    id: "16_9",
-    ratio: "16:9",
-    label: "Catalogue",
-    sub: "Hero Header",
-  },
-];
+const ratios = sizesConfig.map((s) => ({
+  id: s.id,
+  ratio: s.aspectRatio,
+  label: s.label.split(" (")[0],
+  sub: s.sublabel ?? "",
+  best: s.id === "3_4",
+}));
 
 export default function JewelleryStep3Page() {
   const router = useRouter();
   const [selectedSurface, setSelectedSurface] = useState("crimson_velvet");
   const [selectedLighting, setSelectedLighting] = useState("soft_studio");
   const [selectedRatio, setSelectedRatio] = useState("3_4");
+  const [uploadedPhoto, setUploadedPhoto] = useState<UploadedPhotoData | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const canGenerate = uploadedPhoto !== null;
+
+  const handleGenerate = async () => {
+    if (!uploadedPhoto || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const res = await fetch("/api/create-job", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          domain: "jewellery",
+          categoryId: "necklaces",
+          styleId: "macro",
+          backgroundId: selectedSurface,
+          lightingId: selectedLighting,
+          ratioId: selectedRatio,
+          presetId: "polki_emerald_choker",
+          fineTune: { specularity: 2, shadow_warmth: 2 },
+          productName: uploadedPhoto.productName || null,
+          originalPath: uploadedPhoto.originalPath,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.jobId) {
+        router.push(`/studio/jewellery/step-4?jobId=${data.jobId}`);
+      } else {
+        setSubmitError(data.error || "Failed to start generation.");
+        setIsSubmitting(false);
+      }
+    } catch (err: any) {
+      setSubmitError(err?.message || "Network error. Please try again.");
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col justify-between max-w-md mx-auto px-4 py-3.5 shadow-sm border-x border-[#EFEAE1] pb-10">
@@ -301,6 +292,12 @@ export default function JewelleryStep3Page() {
           </div>
         </div>
 
+        {/* 4. Product Photo Upload */}
+        <UploadBlock
+          onUploadChange={setUploadedPhoto}
+          domainLabel="Jewellery"
+        />
+
         {/* Polki Emerald Choker Preset Fine-tune */}
         <div className="bg-[#F5F1E8] border border-[#E7E0D3] rounded-xl p-3 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -340,13 +337,42 @@ export default function JewelleryStep3Page() {
 
         {/* Action Button & Note */}
         <div className="space-y-1.5 pt-1">
-          <Link
-            href="/studio/jewellery/step-4"
-            className="flex items-center justify-center gap-2 w-full bg-[#5B5226] hover:bg-[#49421D] text-white py-3.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-all shadow-md active:scale-[0.99]"
+          {submitError && (
+            <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-800 rounded-xl p-2.5 text-xs">
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+              <span>{submitError}</span>
+            </div>
+          )}
+
+          {!canGenerate && (
+            <div className="flex items-center justify-center gap-1.5 bg-[#F7F2E7] border border-[#E8DFBE] rounded-xl py-2.5 px-3 text-[10px] text-[#7A6A2E] font-semibold">
+              <Lock className="w-3 h-3" />
+              <span>Upload a product photo above to enable generation</span>
+            </div>
+          )}
+
+          <button
+            type="button"
+            disabled={!canGenerate || isSubmitting}
+            onClick={handleGenerate}
+            className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-all shadow-md ${
+              canGenerate && !isSubmitting
+                ? "bg-[#5B5226] hover:bg-[#49421D] text-white active:scale-[0.99] cursor-pointer"
+                : "bg-[#D0C9BB] text-[#8F897E] cursor-not-allowed shadow-none"
+            }`}
           >
-            <Sparkles className="w-4 h-4" />
-            <span>GENERATE SHOT — 1 CREDIT</span>
-          </Link>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>DISPATCHING ATELIER JOB...</span>
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-4 h-4" />
+                <span>GENERATE SHOT — 1 CREDIT</span>
+              </>
+            )}
+          </button>
           <div className="flex items-center justify-center gap-1 text-[10px] text-[#6E675B] font-medium">
             <Check className="w-3 h-3 text-[#5B5226]" />
             <span>1 CREDIT DEDUCTED ONLY ON APPROVAL</span>

@@ -17,60 +17,29 @@ import {
   Gem,
 } from "lucide-react";
 
-interface FootwearStyle {
-  id: string;
-  title: string;
-  subtitle: string;
-  tag: string;
-  image: string;
-  isAtelierChoice?: boolean;
-}
+import footwearConfig from "@/config/footwear.json";
 
-const styles: FootwearStyle[] = [
-  {
-    id: "macro_detail",
-    title: "Macro Detail",
-    subtitle: "Grain, welt stitch & sole...",
-    tag: "Macro Detail",
-    image: "/images/hero_multi_craft.jpg",
-  },
-  {
-    id: "flatlay",
-    title: "FlatLay",
-    subtitle: "Raw linen, horn & limestone",
-    tag: "FlatLay Staging",
-    image: "/images/footwear_craft.jpg",
-  },
-  {
-    id: "studio_high_key",
-    title: "Studio High-Key",
-    subtitle: "Reflective travertine &...",
-    tag: "Podium Key",
-    image: "/images/hero_multi_craft.jpg",
-  },
-  {
-    id: "boutique_display",
-    title: "Boutique Display",
-    subtitle: "In-store backlit luxury...",
-    tag: "Atelier Choice",
-    image: "/images/footwear_craft.jpg",
-    isAtelierChoice: true,
-  },
-  {
-    id: "editorial_campaign",
-    title: "Editorial Campaign",
-    subtitle: "Tailored poise & natural...",
-    tag: "Lookbook On-Model",
-    image: "/images/footwear_craft.jpg",
-  },
-  {
-    id: "lifestyle_on_street",
-    title: "Lifestyle On-Street",
-    subtitle: "Architectural flagstone & da...",
-    tag: "Urban Walk",
-    image: "/images/footwear_craft.jpg",
-  },
-];
+const styleImages: Record<string, string> = {
+  macro_detail: "/images/hero_multi_craft.jpg",
+  flatlay: "/images/footwear_craft.jpg",
+  studio_high_key: "/images/hero_multi_craft.jpg",
+  boutique_display: "/images/footwear_craft.jpg",
+  editorial_campaign: "/images/footwear_craft.jpg",
+  lifestyle_on_street: "/images/footwear_craft.jpg",
+};
+
+const styleIsAtelierChoice: Record<string, boolean> = {
+  boutique_display: true,
+};
+
+const styles = footwearConfig.styles.map((s) => ({
+  id: s.id,
+  title: s.label,
+  subtitle: s.rule,
+  tag: s.group,
+  image: styleImages[s.id] || "/images/footwear_craft.jpg",
+  isAtelierChoice: styleIsAtelierChoice[s.id] ?? false,
+}));
 
 export default function FootwearStep2Page() {
   const router = useRouter();

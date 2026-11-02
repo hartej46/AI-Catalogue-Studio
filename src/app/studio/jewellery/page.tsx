@@ -17,47 +17,28 @@ import {
   Camera,
 } from "lucide-react";
 
-interface CategoryCard {
-  id: string;
-  title: string;
-  subtitle: string;
-  tag: string;
-  image: string;
-}
+import jewelleryConfig from "@/config/jewellery.json";
 
-const categories: CategoryCard[] = [
-  {
-    id: "necklaces",
-    title: "Necklaces & Chokers",
-    subtitle: "Bridal Polki, Kundan sets, emerald chokers, temple...",
-    tag: "💎RK 24K REFRACTION",
-    image: "/images/jewellery_craft.jpg",
-  },
-  {
-    id: "earrings",
-    title: "Earrings & Jhumkas",
-    subtitle: "Chandbalis, diamond drops, royal jhumkis,...",
-    tag: "✦ MICRO-PAVÉ",
-    image: "/images/jhumkas_craft.jpg",
-  },
-  {
-    id: "bangles",
-    title: "Bangles & Kadas",
-    subtitle: "Temple cuffs, diamond bangles, polki kadas,...",
-    tag: "⛶ CYLINDRICAL MESH",
-    image: "/images/bangles_craft.jpg",
-  },
-  {
-    id: "rings",
-    title: "Rings & Maang Teeka",
-    subtitle: "Solitaire cocktail rings, royal maang teekas, nat...",
-    tag: "❂ FOCAL MACRO",
-    image: "/images/hero_multi_craft.jpg",
-  },
-];
+const categoryImages: Record<string, { image: string; tag: string }> = {
+  necklaces: { image: "/images/jewellery_craft.jpg", tag: "💎 24K REFRACTION" },
+  earrings: { image: "/images/jhumkas_craft.jpg", tag: "✦ MICRO-PAVÉ" },
+  bangles: { image: "/images/bangles_craft.jpg", tag: "⛶ CYLINDRICAL MESH" },
+  rings: { image: "/images/hero_multi_craft.jpg", tag: "❂ FOCAL MACRO" },
+};
+
+const categories = jewelleryConfig.categories.map((cat) => ({
+  id: cat.id,
+  title: cat.label,
+  subtitle: cat.rule,
+  tag: categoryImages[cat.id]?.tag || "ATELIER GRADE",
+  image: categoryImages[cat.id]?.image || "/images/jewellery_craft.jpg",
+}));
+
+import { useAuth } from "@/lib/auth-context";
 
 export default function JewelleryStep1Page() {
   const router = useRouter();
+  const { credits } = useAuth();
   const [selectedId, setSelectedId] = useState("necklaces");
 
   return (
@@ -79,13 +60,19 @@ export default function JewelleryStep1Page() {
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 bg-[#F1ECD9] text-[#5B5226] text-xs font-bold px-2.5 py-1 rounded-full border border-[#E3DCC8]">
+          <Link
+            href="/credits"
+            className="flex items-center gap-1 bg-[#F1ECD9] hover:bg-[#E8DFBE] text-[#5B5226] text-xs font-bold px-2.5 py-1 rounded-full border border-[#E3DCC8] transition-colors cursor-pointer"
+          >
             <Sparkles className="w-3 h-3 text-[#5B5226]" />
-            <span>3 CR</span>
-          </div>
-          <div className="w-8 h-8 rounded-full bg-[#5B5226] text-white flex items-center justify-center font-serif text-xs font-bold">
+            <span>{credits} CR</span>
+          </Link>
+          <Link
+            href="/credits"
+            className="w-8 h-8 rounded-full bg-[#5B5226] text-white flex items-center justify-center font-serif text-xs font-bold hover:opacity-90"
+          >
             GP
-          </div>
+          </Link>
         </div>
       </header>
 

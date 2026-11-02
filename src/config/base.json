@@ -1,0 +1,9 @@
+{
+  "systemPrompt": "Edit task. The attached photo is the product. Create a new professional photograph that features this exact product.\n\nPRODUCT RULES (must follow):\n- Keep the product exactly as in the attached photo: same shape, same stones, same colour, same metal finish, same logo, same size proportions.\n- Do not add, remove, redraw or simplify any detail, pattern or ornament.\n- Show the product at realistic scale on the body or surface.\n- Keep the product sharp and well lit. No text, logos, watermarks or borders in the image.",
+  "rules": [
+    "Keep the product exactly as in the attached photo: same shape, same stones, same colour, same metal finish, same logo, same size proportions.",
+    "Do not add, remove, redraw or simplify any detail, pattern or ornament.",
+    "Show the product at realistic scale on the body or surface.",
+    "Keep the product sharp and well lit. No text, logos, watermarks or borders in the image."
+  ]
+}
