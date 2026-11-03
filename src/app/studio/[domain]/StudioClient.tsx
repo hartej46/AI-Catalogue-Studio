@@ -114,57 +114,59 @@ export default function StudioClient({ domain }: { domain: string }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col justify-between max-w-md mx-auto px-4 py-4 shadow-sm border-x border-[#EFEAE1]">
+    <div className="min-h-screen bg-bg text-ink flex flex-col justify-between">
       {/* Studio Navigation */}
-      <header className="flex items-center justify-between pb-3 border-b border-[#EFEAE1]">
-        <Link
-          href="/select-domain"
-          className="p-1 -ml-1 text-[#4F493F] hover:text-black transition-colors rounded-full flex items-center gap-1"
-        >
-          <ChevronLeft className="w-5 h-5" />
-          <span className="text-xs font-semibold text-[#5B5226]">Domains</span>
-        </Link>
+      <header className="sticky top-0 z-50 w-full bg-surface border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <Link
+            href="/select-domain"
+            className="flex items-center gap-2 text-muted hover:text-ink transition-colors duration-150 rounded-[4px] group"
+          >
+            <ChevronLeft className="w-4 h-4 transition-transform duration-150 group-hover:-translate-x-0.5" />
+            <span className="text-xs uppercase tracking-wider font-semibold text-accent">Domains</span>
+          </Link>
 
-        <div className="flex items-center gap-1.5">
-          <div className="w-6 h-6 rounded-md bg-[#5B5226]/10 flex items-center justify-center text-[#5B5226]">
-            <Icon className="w-3.5 h-3.5" />
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-[4px] bg-bg border border-border flex items-center justify-center text-brass">
+              <Icon className="w-3.5 h-3.5" />
+            </div>
+            <span className="font-serif text-base sm:text-lg font-bold tracking-tight text-ink uppercase">
+              {domainKey} Studio
+            </span>
           </div>
-          <span className="font-serif text-sm font-semibold tracking-wide text-[#231F1B]">
-            {domainKey.toUpperCase()} STUDIO
-          </span>
-        </div>
 
-        <div className="bg-[#EAE4D7] text-[#5B5226] text-[10px] font-bold px-2 py-1 rounded">
-          3 Credits
+          <div className="bg-bg text-accent text-xs font-semibold px-3 py-1 rounded-[4px] border border-border">
+            3 Credits
+          </div>
         </div>
       </header>
 
       {/* Main Studio Body */}
-      <main className="space-y-4 pt-3">
+      <main className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 flex-1">
         {/* Domain Classification Banner */}
-        <div className="bg-white rounded-2xl overflow-hidden border border-[#E7E0D3] shadow-xs">
-          <div className="relative aspect-[16/9] w-full">
+        <div className="bg-surface rounded-[8px] overflow-hidden border border-border shadow-warm-card">
+          <div className="relative aspect-[16/8] sm:aspect-[21/9] w-full">
             <Image
               src={studio.image}
               alt={studio.title}
               fill
               className="object-cover"
-              sizes="(max-width: 480px) 100vw, 420px"
+              sizes="(max-width: 1024px) 100vw, 960px"
             />
-            <div className="absolute top-2.5 left-2.5 bg-black/60 backdrop-blur-md text-[#E8DFD0] text-[9px] font-bold px-2 py-0.5 rounded tracking-wider uppercase border border-white/10">
+            <div className="absolute top-3 left-3 bg-ink/80 text-bg text-[10px] font-semibold px-2.5 py-1 rounded-[2px] tracking-wider uppercase border border-border/20">
               {studio.badge}
             </div>
           </div>
-          <div className="p-3.5 space-y-2">
-            <h1 className="font-serif text-lg font-medium text-[#1F1C18]">
+          <div className="p-5 sm:p-6 space-y-2">
+            <h1 className="font-serif text-xl sm:text-2xl font-normal text-ink">
               {studio.title}
             </h1>
-            <p className="text-[11px] text-[#70695E]">{studio.tagline}</p>
-            <div className="flex flex-wrap gap-1.5 pt-1">
+            <p className="text-xs sm:text-sm text-muted">{studio.tagline}</p>
+            <div className="flex flex-wrap gap-2 pt-2">
               {studio.focusItems.map((item, idx) => (
                 <span
                   key={idx}
-                  className="bg-[#FAF8F5] border border-[#E5DECF] text-[#4F483D] text-[10px] px-2 py-0.5 rounded font-medium"
+                  className="bg-bg border border-border text-muted text-xs px-2.5 py-1 rounded-[4px] font-medium"
                 >
                   {item}
                 </span>
@@ -174,21 +176,21 @@ export default function StudioClient({ domain }: { domain: string }) {
         </div>
 
         {/* Upload & Staging Workspace */}
-        <div className="bg-white rounded-2xl p-4 border border-[#E7E0D3] shadow-xs space-y-4">
+        <div className="bg-surface rounded-[6px] p-4 border border-[#DDD4C7] shadow-warm-sm space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <Camera className="w-4 h-4 text-[#5B5226]" />
-              <h2 className="text-xs font-bold uppercase tracking-wider text-[#1F1C18]">
+              <Camera className="w-4 h-4 text-[#5B1A1F]" />
+              <h2 className="text-xs font-bold uppercase tracking-wider text-[#1C1714]">
                 Product Snapshot Staging
               </h2>
             </div>
-            <span className="text-[10px] text-[#7A7366] font-medium">
+            <span className="text-[10px] text-[#6E655C] font-medium">
               Mobile Direct
             </span>
           </div>
 
           {/* Upload Dropzone */}
-          <label className="relative flex flex-col items-center justify-center p-5 border-2 border-dashed border-[#DDD5C7] hover:border-[#5B5226] rounded-xl bg-[#FAF8F5] cursor-pointer transition-all text-center">
+          <label className="relative flex flex-col items-center justify-center p-5 border-2 border-dashed border-[#DDD4C7] hover:border-[#5B1A1F] rounded-[6px] bg-[#F4EFE8] cursor-pointer transition-all text-center">
             <input
               type="file"
               accept="image/*"
@@ -197,7 +199,7 @@ export default function StudioClient({ domain }: { domain: string }) {
             />
             {uploadedImage ? (
               <div className="space-y-2">
-                <div className="relative w-32 h-32 mx-auto rounded-lg overflow-hidden border border-[#D5CCBD]">
+                <div className="relative w-32 h-32 mx-auto rounded-[4px] overflow-hidden border border-[#DDD4C7]">
                   <Image
                     src={uploadedImage}
                     alt="Uploaded Product"
@@ -205,19 +207,19 @@ export default function StudioClient({ domain }: { domain: string }) {
                     className="object-cover"
                   />
                 </div>
-                <div className="flex items-center justify-center gap-1 text-[11px] font-bold text-[#5B5226]">
+                <div className="flex items-center justify-center gap-1 text-[11px] font-bold text-[#5B1A1F]">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>Product Photo Loaded</span>
                 </div>
-                <p className="text-[10px] text-[#7A7366]">Tap to change photo</p>
+                <p className="text-[10px] text-[#6E655C]">Tap to change photo</p>
               </div>
             ) : (
               <div className="space-y-2">
-                <div className="w-10 h-10 rounded-full bg-[#EFEAE0] flex items-center justify-center text-[#5B5226] mx-auto">
+                <div className="w-10 h-10 rounded-[4px] bg-[#FBF8F3] flex items-center justify-center text-[#5B1A1F] mx-auto">
                   <Upload className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-[#1F1C18]">
+                  <div className="text-xs font-semibold text-[#1C1714]">
                     Upload Phone Photo
                   </div>
                   <p className="text-[10px] text-[#7E776A] mt-0.5">
@@ -234,7 +236,7 @@ export default function StudioClient({ domain }: { domain: string }) {
               <span className="font-bold uppercase tracking-wider text-[#635C4F]">
                 Atmospheric Lighting Preset
               </span>
-              <span className="text-[10px] text-[#5B5226] font-semibold">
+              <span className="text-[10px] text-[#5B1A1F] font-semibold">
                 Indian Editorial
               </span>
             </div>
@@ -244,29 +246,29 @@ export default function StudioClient({ domain }: { domain: string }) {
                 <div
                   key={idx}
                   onClick={() => setSelectedPreset(idx)}
-                  className={`p-2.5 rounded-lg border text-xs cursor-pointer flex items-center justify-between transition-all ${
+                  className={`p-2.5 rounded-[4px] border text-xs cursor-pointer flex items-center justify-between transition-all ${
                     selectedPreset === idx
-                      ? "border-[#5B5226] bg-[#FAF8F5] font-semibold text-[#1F1C18]"
-                      : "border-[#E7E0D3] bg-white text-[#5F584C] hover:border-[#CCC2B1]"
+                      ? "border-[#5B1A1F] bg-[#F4EFE8] font-semibold text-[#1C1714]"
+                      : "border-[#DDD4C7] bg-surface text-[#5F584C] hover:border-[#CCC2B1]"
                   }`}
                 >
                   <div className="flex items-center gap-2">
                     <div
-                      className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center ${
+                      className={`w-3.5 h-3.5 rounded-[4px] border flex items-center justify-center ${
                         selectedPreset === idx
-                          ? "border-[#5B5226] bg-[#5B5226]"
+                          ? "border-[#5B1A1F] bg-[#5B1A1F]"
                           : "border-[#C5BBAA]"
                       }`}
                     >
                       {selectedPreset === idx && (
-                        <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                        <div className="w-1.5 h-1.5 rounded-[4px] bg-surface"></div>
                       )}
                     </div>
                     <span>{preset.name}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-[10px] text-[#7A7366]">
+                  <div className="flex items-center gap-2 text-[10px] text-[#6E655C]">
                     <span>{preset.lighting}</span>
-                    <span className="bg-[#EFEAE0] px-1.5 py-0.5 rounded font-bold text-[#5B5226]">
+                    <span className="bg-[#FBF8F3] px-1.5 py-0.5 rounded font-bold text-[#5B1A1F]">
                       {preset.time}
                     </span>
                   </div>
@@ -276,8 +278,8 @@ export default function StudioClient({ domain }: { domain: string }) {
           </div>
 
           {/* Product Rules Notice */}
-          <div className="bg-[#F8F5EE] border border-[#E5DECF] rounded-xl p-3 space-y-1">
-            <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#5B5226] uppercase tracking-wider">
+          <div className="bg-[#F8F5EE] border border-[#DDD4C7] rounded-[6px] p-3 space-y-1">
+            <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#5B1A1F] uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Studio Fidelity Rules</span>
             </div>
@@ -292,9 +294,9 @@ export default function StudioClient({ domain }: { domain: string }) {
             type="button"
             onClick={handleStartRender}
             disabled={isSynthesizing}
-            className="flex items-center justify-center gap-2 w-full bg-[#5B5226] hover:bg-[#49421D] text-white py-3.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-all shadow-md active:scale-[0.99] disabled:opacity-75"
+            className="flex items-center justify-center gap-2 w-full bg-accent hover:bg-accent-hover text-bg py-3.5 sm:py-4 px-6 rounded-[4px] text-xs sm:text-sm font-semibold tracking-wider uppercase transition-colors duration-150 shadow-warm-sm disabled:opacity-60 cursor-pointer"
           >
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4 text-brass" />
             <span>
               {isSynthesizing
                 ? "Synthesizing 4K Neural Render..."
@@ -304,17 +306,17 @@ export default function StudioClient({ domain }: { domain: string }) {
 
           {/* Render Result Modal / Preview */}
           {renderFinished && (
-            <div className="bg-[#FAF8F5] border border-[#5B5226] rounded-xl p-3.5 space-y-3">
-              <div className="flex items-center justify-between text-xs font-bold text-[#5B5226]">
-                <div className="flex items-center gap-1">
+            <div className="bg-surface border border-accent rounded-[8px] p-5 sm:p-6 space-y-4 shadow-warm-card">
+              <div className="flex items-center justify-between text-xs font-semibold text-accent">
+                <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4" />
                   <span>4K Render Complete</span>
                 </div>
-                <span className="text-[10px] bg-[#E7DFCE] px-2 py-0.5 rounded uppercase">
+                <span className="text-[10px] bg-bg border border-border text-ink px-2.5 py-0.5 rounded-[2px] uppercase tracking-wider font-semibold">
                   Ready for Storefront
                 </span>
               </div>
-              <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden border border-[#DCD3C4]">
+              <div className="relative aspect-[4/3] w-full rounded-[6px] overflow-hidden border border-border bg-bg">
                 <Image
                   src={studio.image}
                   alt="Rendered result"
@@ -322,17 +324,17 @@ export default function StudioClient({ domain }: { domain: string }) {
                   className="object-cover"
                 />
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 <button
                   type="button"
                   onClick={() => alert("Downloading 4K Campaign Pack...")}
-                  className="flex-1 bg-[#5B5226] text-white text-xs font-semibold py-2 rounded-md hover:bg-[#49421D]"
+                  className="flex-1 bg-accent hover:bg-accent-hover text-bg text-xs font-semibold py-3 px-4 rounded-[4px] uppercase tracking-wider transition-colors duration-150 shadow-warm-sm cursor-pointer"
                 >
                   Download 4K Renders
                 </button>
                 <Link
                   href="/select-domain"
-                  className="px-3 py-2 border border-[#DDD5C7] text-[#332E27] text-xs font-medium rounded-md hover:bg-white text-center"
+                  className="px-4 py-3 border border-border text-ink text-xs font-semibold rounded-[4px] hover:bg-bg transition-colors duration-150 text-center uppercase tracking-wider"
                 >
                   Switch Domain
                 </Link>
@@ -343,8 +345,8 @@ export default function StudioClient({ domain }: { domain: string }) {
       </main>
 
       {/* Footer */}
-      <footer className="pt-6 pb-2 text-center text-[10px] text-[#7A7366] space-y-1">
-        <p>Atelier Studio Engine v2.4 · Built for Indian Luxury Merchants</p>
+      <footer className="w-full border-t border-border bg-surface py-6 text-center text-xs text-muted">
+        <p>Atelier Studio Engine v2.4 · Calibrated for Indian Luxury Ateliers</p>
       </footer>
     </div>
   );

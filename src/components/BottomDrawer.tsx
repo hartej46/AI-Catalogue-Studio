@@ -42,36 +42,36 @@ export const BottomDrawer: React.FC<BottomDrawerProps> = ({
       aria-modal="true"
       className="fixed inset-0 z-50 flex items-end justify-center"
     >
-      {/* Backdrop Scrim */}
+      {/* Backdrop Scrim - warm espresso tint, no blur */}
       <div
-        className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity duration-300"
+        className="fixed inset-0 bg-ink/50 transition-opacity duration-200"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Drawer Surface */}
+      {/* Drawer Surface - parchment with hairline border, 8px radius */}
       <div
-        className={`relative z-10 w-full max-w-md bg-[#FDF9F3] rounded-t-3xl border-t border-[#E8E6DF] shadow-2xl flex flex-col max-h-[85vh] animate-in slide-in-from-bottom duration-300 ${className}`}
+        className={`relative z-10 w-full max-w-md bg-surface rounded-t-[8px] border-t border-x border-border shadow-warm-md flex flex-col max-h-[85vh] ${className}`}
       >
-        {/* Tactile Drag Handle */}
+        {/* Drag Handle */}
         <div
-          className="w-full pt-3 pb-2 flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
+          className="w-full pt-3 pb-2 flex items-center justify-center cursor-pointer select-none"
           onClick={onClose}
         >
-          <div className="w-12 h-1.5 rounded-full bg-[#D5D2C7] hover:bg-[#8C867A] transition-colors" />
+          <div className="w-10 h-1 rounded-[2px] bg-border hover:bg-muted transition-colors duration-150" />
         </div>
 
         {/* Drawer Header */}
         {(title || subtitle) && (
-          <div className="flex items-center justify-between px-5 py-3 border-b border-[#E8E6DF]">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-border">
             <div>
               {title && (
-                <h3 className="font-serif text-lg font-bold text-[#1C1917]">
+                <h3 className="font-serif text-lg font-bold text-ink">
                   {title}
                 </h3>
               )}
               {subtitle && (
-                <p className="text-xs text-[#78716C] mt-0.5 font-sans">
+                <p className="text-xs text-muted mt-0.5 font-sans">
                   {subtitle}
                 </p>
               )}
@@ -80,7 +80,7 @@ export const BottomDrawer: React.FC<BottomDrawerProps> = ({
               type="button"
               onClick={onClose}
               aria-label="Close drawer"
-              className="w-8 h-8 rounded-full border border-[#E8E6DF] bg-white flex items-center justify-center text-[#57534E] hover:text-[#1C1917] hover:border-[#7A6A2E] transition-colors active:scale-95"
+              className="w-7 h-7 rounded-[4px] border border-border bg-surface flex items-center justify-center text-muted hover:text-ink hover:border-muted transition-colors duration-150"
             >
               <X className="w-4 h-4" />
             </button>
@@ -94,7 +94,7 @@ export const BottomDrawer: React.FC<BottomDrawerProps> = ({
 
         {/* Optional Footer */}
         {footer && (
-          <div className="p-4 border-t border-[#E8E6DF] bg-[#FAF6ED]/80">
+          <div className="p-4 border-t border-border bg-bg">
             {footer}
           </div>
         )}

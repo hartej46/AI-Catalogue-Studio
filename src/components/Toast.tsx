@@ -32,22 +32,22 @@ export const Toast: React.FC<ToastProps> = ({
   }, [duration, onClose]);
 
   const icons = {
-    success: <CheckCircle2 className="w-4 h-4 text-[#7A6A2E]" />,
-    error: <AlertCircle className="w-4 h-4 text-[#B91C1C]" />,
-    info: <Info className="w-4 h-4 text-[#7A6A2E]" />,
+    success: <CheckCircle2 className="w-4 h-4 text-brass" />,
+    error: <AlertCircle className="w-4 h-4 text-accent" />,
+    info: <Info className="w-4 h-4 text-brass" />,
   };
 
   const bgClasses = {
-    success: "bg-white border-[#E8DFBE] text-[#1C1917]",
-    error: "bg-[#FEF2F2] border-[#FECACA] text-[#991B1B]",
-    info: "bg-white border-[#E8E6DF] text-[#1C1917]",
+    success: "bg-surface border-border text-ink",
+    error: "bg-surface border-accent text-accent",
+    info: "bg-surface border-border text-ink",
   }[type];
 
   return (
     <div
       role="status"
       aria-live="polite"
-      className={`relative flex items-start gap-3 p-3.5 rounded-xl border shadow-warm-md backdrop-blur-md transition-all duration-300 max-w-sm w-full ${bgClasses} ${className}`}
+      className={`relative flex items-start gap-3 p-3 rounded-[6px] border shadow-warm-sm transition-opacity duration-150 max-w-sm w-full ${bgClasses} ${className}`}
     >
       <div className="shrink-0 mt-0.5">{icons[type]}</div>
 
@@ -56,7 +56,7 @@ export const Toast: React.FC<ToastProps> = ({
           {title}
         </h5>
         {message && (
-          <p className="text-xs text-[#57534E] mt-0.5 leading-snug">
+          <p className="text-xs text-muted mt-0.5 leading-snug">
             {message}
           </p>
         )}
@@ -67,7 +67,7 @@ export const Toast: React.FC<ToastProps> = ({
           type="button"
           onClick={onClose}
           aria-label="Dismiss toast"
-          className="shrink-0 text-[#8C867A] hover:text-[#1C1917] p-1 rounded-md hover:bg-black/5 transition-colors"
+          className="shrink-0 text-muted hover:text-ink p-1 rounded-[3px] transition-colors duration-150"
         >
           <X className="w-3.5 h-3.5" />
         </button>

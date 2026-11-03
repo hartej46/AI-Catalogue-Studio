@@ -18,12 +18,11 @@ export const metadata = {
 };
 
 async function ReviewContent({
-  domain,
-  jobId,
+  params,
 }: {
-  domain: string;
-  jobId: string;
+  params: Promise<{ domain: string; jobId: string }>;
 }) {
+  const { domain, jobId } = await params;
   const user = await getCurrentUser();
   if (!user) {
     redirect(`/login?redirectTo=/studio/${domain}/review/${jobId}`);
@@ -139,9 +138,7 @@ async function ReviewContent({
   );
 }
 
-export default async function StudioReviewPage({ params }: PageProps) {
-  const { domain, jobId } = await params;
-
+export default function StudioReviewPage({ params }: PageProps) {
   return (
     <Suspense
       fallback={
@@ -150,7 +147,7 @@ export default async function StudioReviewPage({ params }: PageProps) {
         </div>
       }
     >
-      <ReviewContent domain={domain} jobId={jobId} />
+      <ReviewContent params={params} />
     </Suspense>
   );
 }

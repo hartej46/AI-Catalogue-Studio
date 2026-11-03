@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { AlertCircle, ImageOff, RefreshCw, Sparkles } from "lucide-react";
+import { AlertCircle, ImageOff, RefreshCw, ArrowRight } from "lucide-react";
 import { Button } from "./Button";
 
 // 1. Loading Skeleton State
@@ -21,18 +21,18 @@ export const ListLoadingState: React.FC<ListLoadingStateProps> = ({
       {Array.from({ length: count }, (_, idx) => (
         <div
           key={idx}
-          className="bg-white border border-[#E8E6DF] rounded-2xl p-4 shadow-warm-card space-y-3"
+          className="bg-surface border border-border rounded-[6px] p-4 shadow-warm-sm space-y-3"
         >
           {type === "image" && (
-            <div className="w-full aspect-[4/3] bg-[#F5EEDB] rounded-xl" />
+            <div className="w-full aspect-[4/3] bg-bg rounded-[4px]" />
           )}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#F5EEDB] shrink-0" />
+            <div className="w-9 h-9 rounded-[4px] bg-bg shrink-0" />
             <div className="flex-1 space-y-2">
-              <div className="h-4 w-3/5 bg-[#E8DFBE] rounded" />
-              <div className="h-3 w-4/5 bg-[#F5EEDB] rounded" />
+              <div className="h-3.5 w-3/5 bg-border rounded-[2px]" />
+              <div className="h-3 w-4/5 bg-bg rounded-[2px]" />
             </div>
-            <div className="w-5 h-5 rounded-full bg-[#E8E6DF] shrink-0" />
+            <div className="w-4 h-4 rounded-[2px] bg-border shrink-0" />
           </div>
         </div>
       ))}
@@ -60,17 +60,17 @@ export const ListEmptyState: React.FC<ListEmptyStateProps> = ({
 }) => {
   return (
     <div
-      className={`bg-white border border-[#E8E6DF] rounded-2xl p-6 text-center shadow-warm-card flex flex-col items-center justify-center space-y-3 ${className}`}
+      className={`bg-surface border border-border rounded-[6px] p-6 text-center shadow-warm-sm flex flex-col items-center justify-center space-y-3 ${className}`}
     >
-      <div className="w-14 h-14 rounded-full bg-[#F5EEDB] border border-[#E8DFBE] flex items-center justify-center text-[#7A6A2E] shadow-2xs">
-        {icon || <ImageOff className="w-6 h-6 stroke-[1.7]" />}
+      <div className="w-12 h-12 rounded-[6px] bg-bg border border-border flex items-center justify-center text-brass">
+        {icon || <ImageOff className="w-5 h-5 stroke-[1.5]" />}
       </div>
 
       <div className="space-y-1 max-w-xs">
-        <h4 className="font-serif text-lg font-bold text-[#1C1917]">
+        <h4 className="font-serif text-lg font-bold text-ink">
           {title}
         </h4>
-        <p className="text-xs text-[#78716C] leading-relaxed">
+        <p className="text-xs text-muted leading-relaxed">
           {description}
         </p>
       </div>
@@ -81,7 +81,7 @@ export const ListEmptyState: React.FC<ListEmptyStateProps> = ({
             variant="solid"
             size="md"
             onClick={onAction}
-            icon={<Sparkles className="w-3.5 h-3.5" />}
+            icon={<ArrowRight className="w-3.5 h-3.5" />}
           >
             {actionText}
           </Button>
@@ -109,17 +109,17 @@ export const ListErrorState: React.FC<ListErrorStateProps> = ({
 }) => {
   return (
     <div
-      className={`bg-[#FEF2F2] border border-[#FECACA] rounded-2xl p-5 text-center shadow-warm-card flex flex-col items-center justify-center space-y-3 ${className}`}
+      className={`bg-surface border border-border rounded-[6px] p-5 text-center shadow-warm-sm flex flex-col items-center justify-center space-y-3 ${className}`}
     >
-      <div className="w-12 h-12 rounded-full bg-[#FEE2E2] flex items-center justify-center text-[#B91C1C]">
-        <AlertCircle className="w-6 h-6 stroke-[2]" />
+      <div className="w-10 h-10 rounded-[4px] bg-bg border border-border flex items-center justify-center text-accent">
+        <AlertCircle className="w-5 h-5 stroke-[2]" />
       </div>
 
       <div className="space-y-1 max-w-xs">
-        <h4 className="font-serif text-base font-bold text-[#991B1B]">
+        <h4 className="font-serif text-base font-bold text-ink">
           {title}
         </h4>
-        <p className="text-xs text-[#7F1D1D] leading-snug">
+        <p className="text-xs text-muted leading-snug">
           {message}
         </p>
       </div>
@@ -131,7 +131,6 @@ export const ListErrorState: React.FC<ListErrorStateProps> = ({
             size="sm"
             onClick={onRetry}
             icon={<RefreshCw className="w-3.5 h-3.5" />}
-            className="border-[#B91C1C] text-[#B91C1C] hover:bg-[#FEE2E2]"
           >
             {retryText}
           </Button>

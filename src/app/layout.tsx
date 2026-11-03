@@ -28,7 +28,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full bg-[#FDF9F3] text-[#1C1917] flex flex-col font-sans">
+      <body className="min-h-full bg-bg text-ink flex flex-col font-sans">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

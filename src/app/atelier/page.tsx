@@ -37,29 +37,29 @@ function DeleteAccountDialog({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm px-4 pb-6 sm:pb-0">
-      <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl space-y-4 border border-[#E8E0D0] animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-ink/50 px-4 pb-6 sm:pb-0">
+      <div className="bg-surface rounded-[8px] p-6 max-w-sm w-full shadow-warm-md space-y-4 border border-border">
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-full bg-red-50 border border-red-200 flex items-center justify-center shrink-0">
-            <Trash2 className="w-5 h-5 text-red-600" />
+          <div className="w-9 h-9 rounded-[4px] bg-bg border border-border flex items-center justify-center shrink-0">
+            <Trash2 className="w-4 h-4 text-accent" />
           </div>
           <div>
-            <h3 className="font-serif font-bold text-[#1F1C18] text-base">
-              Delete account & photos?
+            <h3 className="font-serif font-bold text-ink text-base">
+              Delete account &amp; photos?
             </h3>
-            <p className="text-xs text-[#6F675A] mt-1 leading-relaxed">
+            <p className="text-xs text-muted mt-1 leading-relaxed">
               This permanently erases your account, all uploaded originals, and
               all generated catalogue photos from our storage servers.
             </p>
           </div>
         </div>
 
-        <div className="bg-red-50 border border-red-100 rounded-xl p-3 text-[11px] text-red-800 leading-relaxed font-medium">
-          ⚠️ This action is irreversible. All remaining credits will be permanently forfeited.
+        <div className="bg-bg border border-border rounded-[4px] p-3 text-[11px] text-ink leading-relaxed">
+          Notice: This action is irreversible. All remaining credits will be permanently forfeited.
         </div>
 
         {error && (
-          <div className="bg-red-100 text-red-800 text-xs p-2.5 rounded-lg">
+          <div className="bg-surface border border-accent text-accent text-xs p-2.5 rounded-[4px]">
             {error}
           </div>
         )}
@@ -68,14 +68,14 @@ function DeleteAccountDialog({
           <button
             onClick={onClose}
             disabled={busy}
-            className="flex-1 py-2.5 rounded-xl border border-[#E8E0D0] text-xs font-semibold text-[#6F675A] hover:bg-[#F5F0E8] transition-colors disabled:opacity-60"
+            className="flex-1 py-2.5 rounded-[4px] border border-border bg-surface text-xs font-semibold text-muted hover:text-ink hover:bg-bg transition-colors duration-150 disabled:opacity-60"
           >
             Cancel
           </button>
           <button
             onClick={onConfirm}
             disabled={busy}
-            className="flex-1 py-2.5 rounded-xl bg-red-600 text-white text-xs font-bold hover:bg-red-700 transition-colors flex items-center justify-center gap-1.5 disabled:opacity-60"
+            className="flex-1 py-2.5 rounded-[4px] bg-accent text-bg text-xs font-bold hover:bg-accent-hover transition-colors duration-150 flex items-center justify-center gap-1.5 disabled:opacity-60"
           >
             {busy ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -148,36 +148,36 @@ export default function AtelierPage() {
         error={deleteError}
       />
 
-      <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col max-w-md mx-auto shadow-sm border-x border-[#EFEAE1] pb-24">
+      <div className="min-h-screen bg-bg text-ink flex flex-col pb-24">
         <TopBar showBack={false} />
 
-        <main className="px-4 pt-4 pb-6 space-y-4 flex-1">
+        <main className="max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6 pb-12 space-y-6 flex-1">
           {/* Eyebrow */}
           <div className="flex items-center justify-between">
-            <div className="inline-flex items-center gap-1.5 bg-[#F0EBE0] text-[#7A6A2E] text-[10px] font-semibold px-2.5 py-0.5 rounded-full border border-[#E3DCCF] uppercase tracking-wider">
-              <User className="w-3 h-3" />
+            <div className="inline-flex items-center gap-1.5 bg-surface text-ink text-[10px] font-semibold px-2.5 py-1 rounded-[4px] border border-border uppercase tracking-wider">
+              <User className="w-3.5 h-3.5 text-brass" />
               <span>Atelier Account</span>
             </div>
-            <span className="text-[10px] uppercase tracking-wider text-[#8C867A] font-semibold">
-              Settings & Legal
+            <span className="text-xs uppercase tracking-wider text-muted font-medium">
+              Settings &amp; Legal
             </span>
           </div>
 
           {/* Account Card */}
-          <div className="bg-white rounded-2xl p-5 border border-[#E7E0D3] shadow-xs space-y-4">
+          <div className="bg-surface rounded-[8px] p-5 sm:p-7 border border-border shadow-warm-card space-y-5">
             <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#7A6A2E] to-[#5B5226] text-white flex items-center justify-center font-serif text-lg font-bold shrink-0 shadow-xs">
+              <div className="w-10 h-10 rounded-[4px] bg-accent text-bg flex items-center justify-center font-serif text-base font-bold shrink-0">
                 {identifier.charAt(0).toUpperCase()}
               </div>
               <div className="min-w-0 flex-1">
-                <div className="text-[10px] uppercase font-bold tracking-wider text-[#8C867A]">
+                <div className="text-[10px] uppercase font-semibold tracking-wider text-muted">
                   Active Account
                 </div>
-                <div className="text-sm font-semibold text-[#1F1C18] truncate flex items-center gap-1.5 mt-0.5">
+                <div className="text-sm font-semibold text-ink truncate flex items-center gap-1.5 mt-0.5">
                   {isEmail ? (
-                    <Mail className="w-3.5 h-3.5 text-[#7A6A2E] shrink-0" />
+                    <Mail className="w-3.5 h-3.5 text-brass shrink-0" />
                   ) : (
-                    <Phone className="w-3.5 h-3.5 text-[#7A6A2E] shrink-0" />
+                    <Phone className="w-3.5 h-3.5 text-brass shrink-0" />
                   )}
                   <span className="truncate">{identifier}</span>
                 </div>
@@ -187,83 +187,83 @@ export default function AtelierPage() {
             {/* Quick Credit Overview Link */}
             <Link
               href="/credits"
-              className="flex items-center justify-between p-3 rounded-xl bg-[#FAF8F5] border border-[#EFEAE1] hover:bg-[#F5F0E8] transition-colors"
+              className="flex items-center justify-between p-3 rounded-[4px] bg-bg border border-border hover:bg-surface transition-colors duration-150"
             >
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-[#F0EBE0] text-[#7A6A2E] flex items-center justify-center">
+                <div className="w-7 h-7 rounded-[3px] bg-surface border border-border text-brass flex items-center justify-center">
                   <Coins className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-[#1F1C18]">
+                  <div className="text-xs font-semibold text-ink">
                     Studio Credits
                   </div>
-                  <div className="text-[10px] text-[#8C867A]">
+                  <div className="text-[10px] text-muted">
                     {freeCredits} free preview · {paidCredits} paid 4K
                   </div>
                 </div>
               </div>
-              <ChevronRight className="w-4 h-4 text-[#8C867A]" />
+              <ChevronRight className="w-4 h-4 text-muted" />
             </Link>
           </div>
 
           {/* Legal and Support Links */}
-          <div className="bg-white rounded-2xl border border-[#E7E0D3] shadow-xs divide-y divide-[#F0EDE6] overflow-hidden">
+          <div className="bg-surface rounded-[6px] border border-border shadow-warm-sm divide-y divide-border overflow-hidden">
             <Link
               href="/privacy"
-              className="flex items-center justify-between p-4 hover:bg-[#FAF8F5] transition-colors"
+              className="flex items-center justify-between p-3.5 hover:bg-bg transition-colors duration-150"
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#F0EBE0] text-[#7A6A2E] flex items-center justify-center">
-                  <Shield className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-[3px] bg-bg border border-border text-brass flex items-center justify-center">
+                  <Shield className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-[#1F1C18]">
+                  <div className="text-xs font-semibold text-ink">
                     Privacy Policy
                   </div>
-                  <div className="text-[10px] text-[#8C867A]">
-                    Data protection & image retention rules
+                  <div className="text-[10px] text-muted">
+                    Data protection &amp; image retention rules
                   </div>
                 </div>
               </div>
-              <ChevronRight className="w-4 h-4 text-[#8C867A]" />
+              <ChevronRight className="w-4 h-4 text-muted" />
             </Link>
 
             <Link
               href="/terms"
-              className="flex items-center justify-between p-4 hover:bg-[#FAF8F5] transition-colors"
+              className="flex items-center justify-between p-3.5 hover:bg-bg transition-colors duration-150"
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#F0EBE0] text-[#7A6A2E] flex items-center justify-center">
-                  <FileText className="w-4 h-4" />
+                <div className="w-7 h-7 rounded-[3px] bg-bg border border-border text-brass flex items-center justify-center">
+                  <FileText className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-[#1F1C18]">
+                  <div className="text-xs font-semibold text-ink">
                     Terms of Service
                   </div>
-                  <div className="text-[10px] text-[#8C867A]">
-                    Commercial license & credit refund terms
+                  <div className="text-[10px] text-muted">
+                    Commercial license &amp; credit refund terms
                   </div>
                 </div>
               </div>
-              <ChevronRight className="w-4 h-4 text-[#8C867A]" />
+              <ChevronRight className="w-4 h-4 text-muted" />
             </Link>
           </div>
 
           {/* Actions: Sign Out & Delete Account */}
-          <div className="space-y-2.5 pt-2">
+          <div className="space-y-2 pt-2">
             <button
               onClick={() => signOut()}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-white border border-[#E3D9C8] text-xs font-semibold text-[#5B5226] hover:bg-[#F5F0E8] transition-colors shadow-2xs"
+              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-[4px] bg-surface border border-border text-xs font-semibold text-ink hover:bg-bg transition-colors duration-150 shadow-warm-sm"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-3.5 h-3.5 text-muted" />
               <span>Sign out</span>
             </button>
 
             <button
               onClick={() => setShowDeleteModal(true)}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-red-200 text-xs font-semibold text-red-600 hover:bg-red-50 transition-colors"
+              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-[4px] border border-border bg-bg text-xs font-medium text-accent hover:border-accent transition-colors duration-150"
             >
-              <Trash2 className="w-4 h-4" />
+              <Trash2 className="w-3.5 h-3.5" />
               <span>Delete my account and photos</span>
             </button>
           </div>

@@ -39,89 +39,99 @@ export default function OpticalStep2Page() {
   const [selectedStyle, setSelectedStyle] = useState("boutique_display");
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col justify-between max-w-md mx-auto px-4 py-3.5 shadow-sm border-x border-[#EFEAE1] pb-24">
+    <div className="min-h-screen bg-bg text-ink flex flex-col justify-between pb-24">
       {/* Top Header */}
-      <header className="flex items-center justify-between pb-3 border-b border-[#EFEAE1]">
-        <div>
-          <span className="font-serif text-base font-bold tracking-tight text-[#1E1B18] block leading-none">
-            Catalogue Studio
-          </span>
-          <span className="text-[9px] tracking-[0.2em] uppercase text-[#787163] font-semibold">
-            Atelier AI Lab · Optical
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 bg-[#F1ECD9] text-[#5B5226] text-xs font-bold px-2.5 py-1 rounded-full border border-[#E3DCC8]">
-            <Sparkles className="w-3 h-3 text-[#5B5226]" />
-            <span>3 CR</span>
+      <header className="sticky top-0 z-40 w-full bg-surface border-b border-border">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+          <div>
+            <span className="font-serif text-base font-bold tracking-tight text-ink block leading-none">
+              Catalogue Studio
+            </span>
+            <span className="text-[9px] tracking-[0.2em] uppercase text-muted font-semibold">
+              Atelier AI Lab · Optical
+            </span>
           </div>
-          <div className="w-8 h-8 rounded-full bg-[#5B5226] text-white flex items-center justify-center font-serif text-xs font-bold">
-            GP
+
+          <div className="flex items-center gap-2">
+            <Link
+              href="/credits"
+              className="flex items-center gap-1 bg-bg hover:bg-surface text-accent text-xs font-semibold px-2.5 py-1 rounded-[4px] border border-border transition-colors duration-150"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-brass" />
+              <span>3 CR</span>
+            </Link>
+            <Link
+              href="/atelier"
+              className="w-8 h-8 rounded-[4px] bg-bg border border-border text-ink flex items-center justify-center font-serif text-xs font-bold hover:border-muted transition-colors duration-150"
+            >
+              GP
+            </Link>
           </div>
         </div>
       </header>
 
       {/* Progress & Badge */}
-      <div className="space-y-1.5 pt-2">
-        <div className="flex items-center justify-between text-[10px] font-bold">
-          <span className="text-[#3E382E] uppercase tracking-wider">
-            Step 02 of 04 — Style &amp; Size
-          </span>
-          <span className="bg-[#EFEAE0] text-[#5B5226] px-2 py-0.5 rounded-full border border-[#DFD8C9]">
-            ✦ Optical Frames
-          </span>
-        </div>
-        <div className="w-full h-1.5 bg-[#E7E0D3] rounded-full overflow-hidden">
-          <div className="w-2/4 h-full bg-[#5B5226] rounded-full transition-all"></div>
+      <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-4">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-xs font-semibold">
+            <span className="text-muted uppercase tracking-wider text-[10px]">
+              Step 02 of 04 — Style &amp; Size
+            </span>
+            <span className="bg-surface text-accent px-2.5 py-0.5 rounded-[4px] border border-border text-[10px] uppercase tracking-wider font-semibold">
+              ✦ Optical Frames
+            </span>
+          </div>
+          <div className="w-full h-1.5 bg-border rounded-[2px] overflow-hidden">
+            <div className="w-2/4 h-full bg-accent rounded-[2px] transition-all"></div>
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <main className="space-y-4 pt-2">
+      <main className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6 flex-1">
         {/* Title */}
-        <div className="space-y-1">
-          <h1 className="font-serif text-2xl font-normal text-[#1F1C18]">
-            Style &amp; size
+        <div className="space-y-1.5">
+          <h1 className="font-serif text-2xl sm:text-3xl font-normal text-ink">
+            Style &amp; Framing Preset
           </h1>
-          <p className="text-xs text-[#6A6357] leading-relaxed">
-            Pick how the photos should look, then choose the size.
+          <p className="text-xs sm:text-sm text-muted leading-relaxed max-w-2xl">
+            Pick how the photos should look, then configure the eyewear composition.
           </p>
         </div>
 
         {/* Section Header */}
-        <div className="flex items-center justify-between text-[11px] pt-1">
-          <span className="font-bold uppercase tracking-wider text-[#353028]">
-            Shot Style ·
+        <div className="flex items-center justify-between pt-1 text-xs">
+          <span className="font-semibold uppercase tracking-wider text-ink">
+            Shot Style · Select 1 Option
           </span>
-          <span className="text-[#7A7366] text-[10px] font-semibold uppercase">
-            Select 1 Option
+          <span className="text-muted text-[10px] font-medium uppercase tracking-wider">
+            6 Visual Directives
           </span>
         </div>
 
-        {/* 6 Cards Grid (2x3) */}
-        <div className="grid grid-cols-2 gap-2.5">
+        {/* 6 Cards Grid (Responsive) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
           {styles.map((style) => {
             const isSelected = selectedStyle === style.id;
             return (
               <div
                 key={style.id}
                 onClick={() => setSelectedStyle(style.id)}
-                className={`relative bg-white rounded-xl overflow-hidden border p-1 cursor-pointer transition-all shadow-xs ${
+                className={`relative bg-surface rounded-[6px] overflow-hidden border p-1 cursor-pointer transition-all shadow-warm-sm ${
                   isSelected
-                    ? "border-[#5B5226] ring-1 ring-[#5B5226]"
-                    : "border-[#E7E0D3] hover:border-[#D5CCBC]"
+                    ? "border-[#5B1A1F] ring-1 ring-[#5B1A1F]"
+                    : "border-[#DDD4C7] hover:border-[#DDD4C7]"
                 }`}
               >
                 {/* Active Checkmark */}
                 {isSelected && (
-                  <div className="absolute top-2 right-2 z-10 w-5 h-5 rounded-full bg-[#5B5226] text-white flex items-center justify-center shadow-xs">
+                  <div className="absolute top-2 right-2 z-10 w-5 h-5 rounded-[4px] bg-[#5B1A1F] text-bg flex items-center justify-center shadow-warm-sm">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                 )}
 
                 {/* Image */}
-                <div className="relative aspect-[16/11] w-full rounded-lg overflow-hidden">
+                <div className="relative aspect-[16/11] w-full rounded-[4px] overflow-hidden">
                   <Image
                     src={style.image}
                     alt={style.title}
@@ -133,10 +143,10 @@ export default function OpticalStep2Page() {
 
                 {/* Details */}
                 <div className="p-2 space-y-0.5">
-                  <div className="text-xs font-bold text-[#1F1C18] leading-tight">
+                  <div className="text-xs font-bold text-[#1C1714] leading-tight">
                     {style.title}
                   </div>
-                  <div className="text-[10px] text-[#7A7366] leading-snug line-clamp-2">
+                  <div className="text-[10px] text-[#6E655C] leading-snug line-clamp-2">
                     {style.subtitle}
                   </div>
                 </div>
@@ -146,15 +156,15 @@ export default function OpticalStep2Page() {
         </div>
 
         {/* Atelier Recommendation Box */}
-        <div className="bg-[#F6F2EA] border border-[#E7E0D3] rounded-xl p-3 flex items-start gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-[#EAE3D3] flex items-center justify-center text-[#5B5226] shrink-0 mt-0.5">
+        <div className="bg-[#FBF8F3] border border-[#DDD4C7] rounded-[6px] p-3 flex items-start gap-2.5">
+          <div className="w-7 h-7 rounded-[4px] bg-[#DDD4C7] flex items-center justify-center text-[#5B1A1F] shrink-0 mt-0.5">
             <Glasses className="w-4 h-4" />
           </div>
           <div className="space-y-0.5">
-            <div className="text-xs font-bold text-[#1F1C18]">
+            <div className="text-xs font-bold text-[#1C1714]">
               Atelier Recommendation
             </div>
-            <p className="text-[10px] text-[#6A6357] leading-relaxed">
+            <p className="text-[10px] text-[#6E655C] leading-relaxed">
               For acetate &amp; filigree eyewear, <strong>Boutique Display</strong>{" "}
               highlights authentic lens translucency and hinge accents without
               artificial glare.
@@ -164,14 +174,14 @@ export default function OpticalStep2Page() {
 
         {/* Status Bar & Concierge */}
         <div className="flex items-center justify-between text-[10px] px-1 font-semibold">
-          <div className="flex items-center gap-1.5 text-[#2C2720] uppercase tracking-wider">
-            <span className="w-2 h-2 rounded-full bg-[#5B5226]"></span>
+          <div className="flex items-center gap-1.5 text-[#1C1714] uppercase tracking-wider">
+            <span className="w-2 h-2 rounded-[4px] bg-[#5B1A1F]"></span>
             <span>Selected: Boutique Display</span>
           </div>
           <button
             type="button"
             onClick={() => alert("Connecting to Concierge...")}
-            className="flex items-center gap-1 text-[#5B5226] bg-[#EFEAE0] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold"
+            className="flex items-center gap-1 text-[#5B1A1F] bg-[#FBF8F3] px-2 py-0.5 rounded-[4px] uppercase tracking-wider font-bold"
           >
             <Headphones className="w-3 h-3" />
             <span>Concierge</span>
@@ -181,7 +191,7 @@ export default function OpticalStep2Page() {
         {/* Action Button */}
         <Link
           href="/studio/optical/step-3"
-          className="flex items-center justify-center gap-2 w-full bg-[#5B5226] hover:bg-[#49421D] text-white py-3.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-all shadow-md active:scale-[0.99]"
+          className="flex items-center justify-center gap-2 w-full bg-[#5B1A1F] hover:bg-[#471418] text-bg py-3.5 rounded-[4px] text-xs font-bold tracking-wider uppercase transition-all shadow-warm-sm active:scale-[0.99]"
         >
           <span>CONTINUE TO CUSTOMIZE</span>
           <ArrowRight className="w-4 h-4" />
@@ -189,40 +199,45 @@ export default function OpticalStep2Page() {
       </main>
 
       {/* Persistent Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-[#E8E1D5] py-2 px-6 flex items-center justify-between text-center z-50 shadow-md">
-        <Link
-          href="/studio/optical"
-          className="flex flex-col items-center gap-0.5 text-[#5B5226]"
-        >
-          <Camera className="w-4 h-4" />
-          <span className="text-[9px] font-bold uppercase tracking-wider">
-            Studio
-          </span>
-        </Link>
-        <Link
-          href="/select-domain"
-          className="flex flex-col items-center gap-0.5 text-[#867F73] hover:text-[#5B5226]"
-        >
-          <Layers className="w-4 h-4" />
-          <span className="text-[9px] font-semibold uppercase tracking-wider">
-            Lookbook
-          </span>
-        </Link>
-        <div className="flex flex-col items-center gap-0.5 text-[#867F73]">
-          <Coins className="w-4 h-4" />
-          <span className="text-[9px] font-semibold uppercase tracking-wider">
-            Credits
-          </span>
+      <nav className="fixed bottom-0 left-0 right-0 w-full bg-surface border-t border-border py-2 px-6 z-50 shadow-warm-sm">
+        <div className="max-w-5xl mx-auto flex items-center justify-around sm:justify-center sm:gap-16 text-center">
+          <Link
+            href="/studio/optical"
+            className="flex flex-col items-center gap-0.5 text-accent"
+          >
+            <Camera className="w-4 h-4" />
+            <span className="text-[9px] font-semibold uppercase tracking-wider">
+              Studio
+            </span>
+          </Link>
+          <Link
+            href="/lookbook"
+            className="flex flex-col items-center gap-0.5 text-muted hover:text-ink transition-colors duration-150"
+          >
+            <Layers className="w-4 h-4" />
+            <span className="text-[9px] font-semibold uppercase tracking-wider">
+              Lookbook
+            </span>
+          </Link>
+          <Link
+            href="/credits"
+            className="flex flex-col items-center gap-0.5 text-muted hover:text-ink transition-colors duration-150"
+          >
+            <Coins className="w-4 h-4" />
+            <span className="text-[9px] font-semibold uppercase tracking-wider">
+              Credits
+            </span>
+          </Link>
+          <Link
+            href="/atelier"
+            className="flex flex-col items-center gap-0.5 text-muted hover:text-ink transition-colors duration-150"
+          >
+            <Store className="w-4 h-4" />
+            <span className="text-[9px] font-semibold uppercase tracking-wider">
+              Atelier
+            </span>
+          </Link>
         </div>
-        <Link
-          href="/select-domain"
-          className="flex flex-col items-center gap-0.5 text-[#867F73] hover:text-[#5B5226]"
-        >
-          <Store className="w-4 h-4" />
-          <span className="text-[9px] font-semibold uppercase tracking-wider">
-            Atelier
-          </span>
-        </Link>
       </nav>
     </div>
   );

@@ -231,34 +231,34 @@ export default function UploadBlock({
   };
 
   return (
-    <div className="bg-white rounded-2xl p-3.5 border border-[#E7E0D3] shadow-xs space-y-3">
+    <div className="bg-surface rounded-[8px] p-3.5 border border-border shadow-warm-sm space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <div className="w-6 h-6 rounded-md bg-[#5B5226]/10 flex items-center justify-center text-[#5B5226]">
+          <div className="w-6 h-6 rounded-[4px] bg-bg border border-border flex items-center justify-center text-brass">
             <Camera className="w-3.5 h-3.5" />
           </div>
-          <span className="font-bold text-xs uppercase tracking-wider text-[#1F1C18]">
+          <span className="font-semibold text-xs uppercase tracking-wider text-ink">
             Product Photo Staging
           </span>
         </div>
-        <div className="flex items-center gap-1 text-[10px] text-[#787163] font-medium bg-[#F5F1E8] px-2 py-0.5 rounded-full">
-          <Lock className="w-3 h-3 text-[#5B5226]" />
+        <div className="flex items-center gap-1 text-[10px] text-muted font-normal bg-bg border border-border px-2 py-0.5 rounded-[4px]">
+          <Lock className="w-3 h-3 text-brass" />
           <span>Private &amp; Encrypted</span>
         </div>
       </div>
 
       {/* Error Message Banner */}
       {errorMsg && (
-        <div className="p-2.5 bg-red-50 border border-red-200 rounded-xl flex items-start gap-2 text-xs text-red-800 animate-in fade-in">
-          <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+        <div className="p-2.5 bg-surface border border-accent rounded-[6px] flex items-start gap-2 text-xs text-accent">
+          <AlertCircle className="w-4 h-4 text-accent shrink-0 mt-0.5" />
           <div className="flex-1 text-[11px] font-medium leading-relaxed">
             {errorMsg}
           </div>
           <button
             type="button"
             onClick={() => setErrorMsg(null)}
-            className="text-red-500 hover:text-red-800 text-xs font-bold leading-none p-0.5"
+            className="text-accent hover:text-accent-hover text-xs font-bold leading-none p-0.5"
           >
             ✕
           </button>
@@ -267,8 +267,8 @@ export default function UploadBlock({
 
       {/* Warning Notice (e.g. Supabase bucket creation tip) */}
       {warningMsg && (
-        <div className="p-2 bg-amber-50 border border-amber-200 rounded-xl text-[10px] text-amber-800 leading-snug">
-          ⚠️ {warningMsg}
+        <div className="p-2 bg-surface border border-brass rounded-[6px] text-[10px] text-ink leading-snug">
+          Notice: {warningMsg}
         </div>
       )}
 
@@ -285,9 +285,9 @@ export default function UploadBlock({
       {uploadedPhoto ? (
         <div className="space-y-3">
           {/* Uploaded Thumbnail Card */}
-          <div className="relative rounded-xl border border-[#D5CCBD] bg-[#FAF8F5] p-3 flex items-center gap-3">
+          <div className="relative rounded-[6px] border border-border bg-bg p-3 flex items-center gap-3">
             {/* Thumbnail Preview with signed link */}
-            <div className="relative w-20 h-20 rounded-lg overflow-hidden border border-[#D8D0C0] bg-white shrink-0 shadow-xs">
+            <div className="relative w-20 h-20 rounded-[4px] overflow-hidden border border-border bg-surface shrink-0 shadow-warm-sm">
               <Image
                 src={uploadedPhoto.signedUrl}
                 alt={productName || "Uploaded product"}
@@ -299,23 +299,23 @@ export default function UploadBlock({
 
             {/* Metadata Info */}
             <div className="flex-1 min-w-0 space-y-1">
-              <div className="flex items-center gap-1 text-emerald-700 font-bold text-xs">
-                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+              <div className="flex items-center gap-1 text-ink font-semibold text-xs">
+                <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0" />
                 <span className="truncate">Ready for 4K Synthesis</span>
               </div>
 
-              <div className="text-[10px] text-[#756E61] space-y-0.5">
-                <p className="truncate font-medium text-[#29241E]">
+              <div className="text-[10px] text-muted space-y-0.5">
+                <p className="truncate font-medium text-ink">
                   {productName || `${domainLabel} Photograph`}
                 </p>
                 {uploadedPhoto.dimensions && (
-                  <p className="font-mono text-[9px] text-[#857E71]">
+                  <p className="font-mono text-[9px] text-muted">
                     {uploadedPhoto.dimensions.width} ×{" "}
                     {uploadedPhoto.dimensions.height} px · Normalized JPG
                   </p>
                 )}
-                <div className="flex items-center gap-1 text-[9px] text-[#5B5226]">
-                  <Sparkles className="w-2.5 h-2.5" />
+                <div className="flex items-center gap-1 text-[9px] text-muted">
+                  <Camera className="w-2.5 h-2.5 text-brass" />
                   <span>Camera rotation auto-aligned</span>
                 </div>
               </div>
@@ -326,7 +326,7 @@ export default function UploadBlock({
               type="button"
               onClick={handleRemovePhoto}
               title="Remove photo"
-              className="p-2 rounded-lg border border-[#DDD5C7] bg-white text-[#7A7366] hover:text-red-700 hover:border-red-300 hover:bg-red-50 transition-colors shrink-0 cursor-pointer"
+              className="p-2 rounded-[4px] border border-border bg-surface text-muted hover:text-accent hover:border-accent transition-colors duration-150 shrink-0 cursor-pointer"
             >
               <Trash2 className="w-4 h-4" />
             </button>
@@ -339,27 +339,27 @@ export default function UploadBlock({
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => !isUploading && fileInputRef.current?.click()}
-          className={`relative rounded-xl border-2 border-dashed p-5 text-center cursor-pointer transition-all ${
+          className={`relative rounded-[6px] border border-dashed p-5 text-center cursor-pointer transition-colors duration-150 ${
             isDragging
-              ? "border-[#5B5226] bg-[#F5F0E6]"
-              : "border-[#D8D0C2] bg-[#FAF8F5] hover:border-[#5B5226] hover:bg-[#FBF9F5]"
+              ? "border-accent bg-bg"
+              : "border-border bg-bg hover:border-muted hover:bg-surface"
           }`}
         >
           {isUploading ? (
             <div className="space-y-2.5 py-2">
-              <Loader2 className="w-7 h-7 text-[#5B5226] animate-spin mx-auto" />
-              <div className="text-xs font-semibold text-[#1F1C18]">
+              <Loader2 className="w-6 h-6 text-accent animate-spin mx-auto" />
+              <div className="text-xs font-semibold text-ink">
                 Processing &amp; Normalizing Photo...
               </div>
 
               {/* Progress Bar */}
-              <div className="w-48 mx-auto bg-[#E8DFCF] rounded-full h-1.5 overflow-hidden">
+              <div className="w-48 mx-auto bg-border rounded-[2px] h-1 overflow-hidden">
                 <div
-                  className="bg-[#5B5226] h-1.5 rounded-full transition-all duration-300"
+                  className="bg-accent h-1 rounded-[2px] transition-all duration-300"
                   style={{ width: `${uploadProgress}%` }}
                 ></div>
               </div>
-              <div className="text-[10px] text-[#7A7366]">
+              <div className="text-[10px] text-muted">
                 {uploadProgress < 75
                   ? `Uploading (${uploadProgress}%)`
                   : "Checking rotation & converting to 2048px JPG..."}
@@ -367,18 +367,18 @@ export default function UploadBlock({
             </div>
           ) : (
             <div className="space-y-2">
-              <div className="w-10 h-10 rounded-full bg-[#EFE9DC] text-[#5B5226] flex items-center justify-center mx-auto transition-transform group-hover:scale-105">
-                <Upload className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-[4px] bg-surface border border-border text-brass flex items-center justify-center mx-auto">
+                <Upload className="w-4 h-4" />
               </div>
               <div>
-                <p className="text-xs font-bold text-[#1F1C18]">
+                <p className="text-xs font-semibold text-ink">
                   Upload Raw Product Photo
                 </p>
-                <p className="text-[10px] text-[#787163] mt-0.5">
+                <p className="text-[10px] text-muted mt-0.5">
                   Drag &amp; drop or tap to browse from camera
                 </p>
               </div>
-              <div className="inline-flex items-center gap-1 text-[9px] text-[#8A8274] bg-[#F1EBDD] px-2 py-0.5 rounded-full">
+              <div className="inline-flex items-center gap-1 text-[9px] text-muted bg-surface border border-border px-2 py-0.5 rounded-[4px]">
                 <span>JPG, PNG, WEBP</span>
                 <span>·</span>
                 <span>Min 800px</span>
@@ -393,10 +393,10 @@ export default function UploadBlock({
       {/* Optional Product Name Field */}
       <div className="space-y-1 pt-1">
         <div className="flex items-center justify-between text-[10px]">
-          <label className="font-semibold text-[#484237]">
-            Product Name <span className="text-[#878072] font-normal">(Optional)</span>
+          <label className="font-medium text-ink">
+            Product Name <span className="text-muted font-normal">(Optional)</span>
           </label>
-          <span className="text-[9px] text-[#878072] font-mono">
+          <span className="text-[9px] text-muted font-mono">
             {productName.length}/60
           </span>
         </div>
@@ -406,9 +406,9 @@ export default function UploadBlock({
           onChange={(e) => handleProductNameChange(e.target.value)}
           maxLength={60}
           placeholder="e.g. Heritage Polki Choker"
-          className="w-full text-xs px-3 py-2 rounded-lg border border-[#DDD5C7] bg-[#FAF8F5] text-[#1F1C18] placeholder-[#9E9789] focus:bg-white focus:border-[#5B5226] focus:ring-1 focus:ring-[#5B5226] outline-none transition-all"
+          className="w-full text-xs px-3 py-2 rounded-[4px] border border-border bg-bg text-ink placeholder-muted focus:bg-surface focus:border-accent outline-none transition-colors duration-150"
         />
-        <p className="text-[9px] text-[#8A8375]">
+        <p className="text-[9px] text-muted">
           Plain text only: letters, numbers, spaces, and hyphens (max 60 characters).
         </p>
       </div>

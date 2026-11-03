@@ -24,25 +24,25 @@ export const StepProgress: React.FC<StepProgressProps> = ({
       {showStepText && (
         <div className="flex items-center justify-between text-xs">
           <div className="flex items-center gap-1.5">
-            <span className="label-caps text-[#7A6A2E]">
+            <span className="label-caps text-accent font-semibold">
               STEP {clampedStep} OF {totalSteps}
             </span>
             {stepName && (
               <>
-                <span className="text-[#C5BEB2]">·</span>
-                <span className="font-medium text-[#57534E] text-[11px]">
+                <span className="text-border">·</span>
+                <span className="font-normal text-muted text-[11px]">
                   {stepName}
                 </span>
               </>
             )}
           </div>
-          <span className="label-micro text-[#8C867A]">
+          <span className="label-micro text-muted">
             {Math.round((clampedStep / totalSteps) * 100)}% COMPLETE
           </span>
         </div>
       )}
 
-      {/* 4 Segments */}
+      {/* Segments: 1px hairline segments, brass or stone */}
       <div
         className="flex items-center gap-1.5 w-full"
         role="progressbar"
@@ -53,16 +53,13 @@ export const StepProgress: React.FC<StepProgressProps> = ({
       >
         {Array.from({ length: totalSteps }, (_, index) => {
           const isFilled = index < clampedStep;
-          const isCurrent = index === clampedStep - 1;
 
           return (
             <div
               key={index}
-              className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
-                isFilled
-                  ? "bg-[#7A6A2E]"
-                  : "bg-[#E8E6DF] opacity-60"
-              } ${isCurrent ? "ring-1 ring-[#7A6A2E]/30" : ""}`}
+              className={`h-1 flex-1 rounded-[2px] transition-colors duration-150 ${
+                isFilled ? "bg-accent" : "bg-border"
+              }`}
             />
           );
         })}
