@@ -9,47 +9,53 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col max-w-2xl mx-auto shadow-sm border-x border-[#EFEAE1] px-6 py-8">
-      {/* Back button */}
-      <div className="mb-6">
-        <Link
-          href="/atelier"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-[#7A6A2E] hover:text-[#5B5226] transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Atelier</span>
-        </Link>
-      </div>
-
-      {/* Notice Banner */}
-      <div className="mb-8 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-3 leading-relaxed">
-        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-        <div>
-          <strong className="font-semibold">Placeholder Legal Document:</strong> This is a
-          template document provided for testing and navigation. Please replace the text
-          below with your company's official, legally vetted Privacy Policy before launching to
-          customers.
+    <div className="min-h-screen bg-bg text-ink flex flex-col">
+      {/* Header Bar */}
+      <header className="sticky top-0 z-40 w-full bg-surface border-b border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+          <Link
+            href="/atelier"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-accent hover:text-accent-hover transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Atelier</span>
+          </Link>
+          <span className="font-serif text-sm font-bold tracking-tight text-ink">
+            Catalogue Studio
+          </span>
         </div>
-      </div>
+      </header>
 
-      {/* Header */}
-      <div className="border-b border-[#E7E0D3] pb-6 mb-8">
-        <div className="inline-flex items-center gap-1.5 bg-[#F0EBE0] text-[#7A6A2E] text-[10px] font-semibold px-2.5 py-0.5 rounded-full border border-[#E3DCCF] uppercase tracking-wider mb-3">
-          <Shield className="w-3 h-3" />
-          <span>Legal & Privacy</span>
+      <main className="max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8 flex-1">
+        {/* Notice Banner */}
+        <div className="p-4 rounded-[6px] bg-surface border border-brass/40 text-ink text-xs flex items-start gap-3 leading-relaxed shadow-warm-sm">
+          <AlertTriangle className="w-4 h-4 text-brass shrink-0 mt-0.5" />
+          <div className="text-muted">
+            <strong className="font-semibold text-ink">Placeholder Legal Document:</strong> This is a
+            template document provided for testing and navigation. Please replace the text
+            below with your company's official, legally vetted Privacy Policy before launching to
+            customers.
+          </div>
         </div>
-        <h1 className="font-serif text-3xl font-bold text-[#1F1C18]">
-          Privacy Policy
-        </h1>
-        <p className="text-xs text-[#8C867A] mt-2">
-          Effective Date: October 2026 · Version 1.0 (Draft)
-        </p>
-      </div>
 
-      {/* Content */}
-      <div className="space-y-6 text-xs text-[#524B40] leading-relaxed">
+        {/* Header */}
+        <div className="border-b border-border pb-6 space-y-3">
+          <div className="inline-flex items-center gap-1.5 bg-surface text-ink text-[10px] font-semibold px-2.5 py-1 rounded-[4px] border border-border uppercase tracking-wider">
+            <Shield className="w-3.5 h-3.5 text-brass" />
+            <span>Legal &amp; Privacy</span>
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl font-normal text-ink">
+            Privacy Policy
+          </h1>
+          <p className="text-xs text-muted">
+            Effective Date: October 2026 · Version 1.0 (Draft)
+          </p>
+        </div>
+
+        {/* Content */}
+        <div className="space-y-6 text-xs sm:text-sm text-muted leading-relaxed">
         <section className="space-y-2">
-          <h2 className="font-serif text-base font-bold text-[#1F1C18]">
+          <h2 className="font-serif text-base font-bold text-[#1C1714]">
             1. Information We Collect
           </h2>
           <p>
@@ -60,7 +66,7 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="font-serif text-base font-bold text-[#1F1C18]">
+          <h2 className="font-serif text-base font-bold text-[#1C1714]">
             2. How We Use Uploaded Images
           </h2>
           <p>
@@ -71,7 +77,7 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="font-serif text-base font-bold text-[#1F1C18]">
+          <h2 className="font-serif text-base font-bold text-[#1C1714]">
             3. Data Storage and Security
           </h2>
           <p>
@@ -82,8 +88,8 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="font-serif text-base font-bold text-[#1F1C18]">
-            4. Your Rights & Account Deletion
+          <h2 className="font-serif text-base font-bold text-ink">
+            4. Your Rights &amp; Account Deletion
           </h2>
           <p>
             You retain complete ownership of your uploaded assets and generated photos. You may
@@ -94,15 +100,16 @@ export default function PrivacyPage() {
         </section>
 
         <section className="space-y-2">
-          <h2 className="font-serif text-base font-bold text-[#1F1C18]">
+          <h2 className="font-serif text-base font-bold text-ink">
             5. Contact Us
           </h2>
           <p>
             For privacy inquiries or data rights requests, please contact the studio director at{" "}
-            <span className="font-medium text-[#1F1C18]">privacy@atelierstudio.ai</span>.
+            <span className="font-medium text-ink">privacy@atelierstudio.ai</span>.
           </p>
         </section>
       </div>
+      </main>
     </div>
   );
 }

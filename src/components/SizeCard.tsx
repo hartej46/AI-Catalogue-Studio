@@ -24,22 +24,22 @@ export const SizeCard: React.FC<SizeCardProps> = ({
   onClick,
   className = "",
 }) => {
-  // Helper to render proportional ratio box
+  // Helper to render proportional ratio box with 1px border
   const renderRatioOutline = () => {
-    let boxClass = "w-6 h-6"; // default 1:1
-    if (ratio === "4:5") boxClass = "w-5 h-6";
-    if (ratio === "9:16") boxClass = "w-4 h-7";
-    if (ratio === "16:9") boxClass = "w-7 h-4";
+    let boxClass = "w-5 h-5"; // default 1:1
+    if (ratio === "4:5") boxClass = "w-4 h-5";
+    if (ratio === "9:16") boxClass = "w-3.5 h-6";
+    if (ratio === "16:9") boxClass = "w-6 h-3.5";
 
     return (
-      <div className="w-9 h-9 flex items-center justify-center shrink-0">
+      <div className="w-8 h-8 flex items-center justify-center shrink-0">
         <div
-          className={`${boxClass} rounded-xs border-2 transition-all ${
+          className={`${boxClass} rounded-[2px] border transition-colors duration-150 ${
             selected
-              ? "border-[#7A6A2E] bg-[#7A6A2E]/15"
+              ? "border-accent bg-bg"
               : disabled
-              ? "border-[#D5D2C7] bg-[#E8E6DF]"
-              : "border-[#8C867A] bg-transparent"
+              ? "border-border bg-bg"
+              : "border-muted bg-transparent"
           }`}
         />
       </div>
@@ -52,12 +52,12 @@ export const SizeCard: React.FC<SizeCardProps> = ({
       disabled={disabled}
       onClick={disabled ? undefined : onClick}
       aria-pressed={selected}
-      className={`relative w-full text-left rounded-2xl p-3.5 transition-all duration-200 select-none focus:outline-none flex items-center justify-between ${
+      className={`relative w-full text-left rounded-[6px] p-3 transition-colors duration-150 select-none focus:outline-none flex items-center justify-between border ${
         disabled
-          ? "bg-[#F7F5F0] border border-[#E8E6DF] opacity-50 cursor-not-allowed"
+          ? "bg-bg border-border opacity-60 cursor-not-allowed"
           : selected
-          ? "bg-[#F5EEDB] border-2 border-[#7A6A2E] shadow-warm-md scale-[1.01]"
-          : "bg-white border border-[#E8E6DF] hover:border-[#DFD5B0] shadow-warm-card active:scale-[0.99]"
+          ? "bg-surface border-accent shadow-warm-sm"
+          : "bg-surface border-border hover:border-muted shadow-warm-sm"
       } ${className}`}
     >
       <div className="flex items-center gap-3">
@@ -67,23 +67,23 @@ export const SizeCard: React.FC<SizeCardProps> = ({
           <div className="flex items-center gap-2">
             <span
               className={`font-semibold text-sm ${
-                selected ? "text-[#1C1917] font-bold" : "text-[#292524]"
+                selected ? "text-ink font-bold" : "text-ink"
               }`}
             >
               {name}
             </span>
             <span
-              className={`label-micro px-1.5 py-0.5 rounded ${
+              className={`label-micro px-1.5 py-0.5 rounded-[2px] border ${
                 selected
-                  ? "bg-[#E8DFBE] text-[#7A6A2E] font-bold"
-                  : "bg-[#F5EEDB] text-[#7A6A2E]"
+                  ? "bg-bg text-ink border-border font-bold"
+                  : "bg-bg text-muted border-border"
               }`}
             >
               {ratio}
             </span>
           </div>
           {recommendedFor && (
-            <p className="text-xs text-[#78716C] mt-0.5 leading-snug">
+            <p className="text-xs text-muted mt-0.5 leading-snug">
               {recommendedFor}
             </p>
           )}
@@ -92,13 +92,13 @@ export const SizeCard: React.FC<SizeCardProps> = ({
 
       <div className="shrink-0 ml-2">
         {selected ? (
-          <div className="w-5 h-5 rounded-full bg-[#7A6A2E] text-white flex items-center justify-center shadow-xs">
-            <Check className="w-3 h-3 stroke-[3]" />
+          <div className="w-5 h-5 rounded-[3px] bg-accent text-bg flex items-center justify-center">
+            <Check className="w-3 h-3 stroke-[2.5]" />
           </div>
         ) : (
           <div
-            className={`w-5 h-5 rounded-full border ${
-              disabled ? "border-[#E8E6DF]" : "border-[#D5D2C7] bg-[#FDF9F3]"
+            className={`w-5 h-5 rounded-[3px] border ${
+              disabled ? "border-border bg-bg" : "border-border bg-surface"
             }`}
           />
         )}

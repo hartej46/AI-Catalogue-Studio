@@ -131,39 +131,41 @@ export default function StudioReviewClient({
   // Phase A: Creating / Generating Screen (when jobId exists and job is not done yet)
   if (jobId && jobStatus !== "done" && !errorMessage) {
     return (
-      <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col justify-between max-w-md mx-auto px-4 py-6 shadow-sm border-x border-[#EFEAE1]">
+      <div className="min-h-screen bg-bg text-ink flex flex-col justify-between">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-[#EAE3D6]">
-          <div>
-            <span className="font-serif text-base font-bold text-[#1E1B18] block leading-none">
-              Catalogue Studio
-            </span>
-            <span className="text-[9px] tracking-[0.2em] uppercase text-[#787163] font-semibold">
-              Atelier AI Lab · {domainTitle}
-            </span>
+        <header className="sticky top-0 z-40 w-full bg-surface border-b border-border">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <div>
+              <span className="font-serif text-base font-bold text-ink block leading-none">
+                Catalogue Studio
+              </span>
+              <span className="text-[9px] tracking-[0.2em] uppercase text-muted font-semibold">
+                Atelier AI Lab · {domainTitle}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 bg-bg text-accent text-xs font-semibold px-2.5 py-1 rounded-[4px] border border-border">
+              <Clock className="w-3.5 h-3.5 animate-pulse text-brass" />
+              <span>{elapsedSeconds}s</span>
+            </div>
           </div>
-          <div className="flex items-center gap-1.5 bg-[#F1ECD9] text-[#5B5226] text-xs font-bold px-2.5 py-1 rounded-full border border-[#E3DCC8]">
-            <Clock className="w-3.5 h-3.5 animate-pulse text-[#5B5226]" />
-            <span>{elapsedSeconds}s</span>
-          </div>
-        </div>
+        </header>
 
         {/* Creating Centerpiece */}
-        <main className="my-auto py-12 text-center space-y-6">
+        <main className="max-w-xl mx-auto w-full px-4 sm:px-6 my-auto py-12 text-center space-y-6">
           {/* Animated Spinner with Studio Glow */}
           <div className="relative w-28 h-28 mx-auto flex items-center justify-center">
-            <div className="absolute inset-0 rounded-full border-4 border-[#EFE7D8] animate-pulse"></div>
-            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#5B5226] border-r-[#5B5226] animate-spin"></div>
-            <div className="w-20 h-20 rounded-full bg-[#FAF5EB] border border-[#DDD4C3] flex items-center justify-center shadow-inner">
-              <Sparkles className="w-8 h-8 text-[#5B5226] animate-bounce" />
+            <div className="absolute inset-0 rounded-[4px] border-4 border-[#EFE7D8] animate-pulse"></div>
+            <div className="absolute inset-0 rounded-[4px] border-4 border-transparent border-t-[#5B1A1F] border-r-[#5B1A1F] animate-spin"></div>
+            <div className="w-20 h-20 rounded-[4px] bg-[#FAF5EB] border border-[#DDD4C3] flex items-center justify-center shadow-inner">
+              <Sparkles className="w-8 h-8 text-[#5B1A1F] animate-bounce" />
             </div>
           </div>
 
           <div className="space-y-2">
-            <h1 className="font-serif text-2xl font-bold text-[#1F1C18] tracking-tight">
+            <h1 className="font-serif text-2xl font-bold text-[#1C1714] tracking-tight">
               Synthesizing Masterpiece...
             </h1>
-            <p className="text-xs text-[#70685B] max-w-xs mx-auto leading-relaxed">
+            <p className="text-xs text-[#6E655C] max-w-xs mx-auto leading-relaxed">
               {elapsedSeconds < 4
                 ? "Calibrating 4K studio lighting and camera angle..."
                 : elapsedSeconds < 9
@@ -175,7 +177,7 @@ export default function StudioReviewClient({
           </div>
 
           {/* Step Pill */}
-          <div className="inline-flex items-center gap-2 bg-[#F3EDE2] border border-[#E4DCB] px-3.5 py-1.5 rounded-full text-[11px] font-semibold text-[#5B5226]">
+          <div className="inline-flex items-center gap-2 bg-[#F3EDE2] border border-[#E4DCB] px-3.5 py-1.5 rounded-[4px] text-[11px] font-semibold text-[#5B1A1F]">
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
             <span className="uppercase tracking-wider text-[10px]">
               Status: {jobStatus.toUpperCase()} · Polling every 2s
@@ -183,8 +185,8 @@ export default function StudioReviewClient({
           </div>
 
           {/* Quality Notice */}
-          <div className="bg-[#FAF7F2] border border-[#E8E1D3] rounded-xl p-3 max-w-xs mx-auto text-left text-[11px] text-[#736B5E] space-y-1">
-            <div className="flex items-center gap-1.5 font-bold text-[#29241E]">
+          <div className="bg-[#F4EFE8] border border-[#DDD4C7] rounded-[6px] p-3 max-w-xs mx-auto text-left text-[11px] text-[#6E655C] space-y-1">
+            <div className="flex items-center gap-1.5 font-bold text-[#1C1714]">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>Credit Protected</span>
             </div>
@@ -198,7 +200,7 @@ export default function StudioReviewClient({
         <div className="text-center pt-4">
           <Link
             href={`/studio/${domain}/step-3`}
-            className="text-xs text-[#8A8272] hover:text-[#1F1C18] underline"
+            className="text-xs text-[#8A8272] hover:text-[#1C1714] underline"
           >
             Cancel and Return to Customize
           </Link>
@@ -210,29 +212,29 @@ export default function StudioReviewClient({
   // Phase B: Error / Failed Screen
   if (errorMessage) {
     return (
-      <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col justify-between max-w-md mx-auto px-4 py-6 shadow-sm border-x border-[#EFEAE1]">
-        <div className="my-auto py-12 text-center space-y-4">
-          <div className="w-14 h-14 rounded-full bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center mx-auto shadow-sm">
+      <div className="min-h-screen bg-bg text-ink flex flex-col justify-between">
+        <div className="max-w-md mx-auto w-full px-4 my-auto py-12 text-center space-y-4">
+          <div className="w-14 h-14 rounded-[4px] bg-amber-50 border border-amber-200 text-amber-700 flex items-center justify-center mx-auto shadow-warm-sm">
             <AlertCircle className="w-7 h-7" />
           </div>
 
           <div className="space-y-1.5">
-            <h1 className="font-serif text-xl font-bold text-[#1F1C18]">
+            <h1 className="font-serif text-xl font-bold text-ink">
               Notice
             </h1>
-            <p className="text-xs text-[#6F675A] max-w-xs mx-auto leading-relaxed">
+            <p className="text-xs text-muted max-w-xs mx-auto leading-relaxed">
               {errorMessage}
             </p>
           </div>
 
-          <div className="bg-[#FAF7F2] border border-[#E8E1D3] rounded-xl p-3 max-w-xs mx-auto text-[11px] text-[#736B5E]">
+          <div className="bg-[#F4EFE8] border border-[#DDD4C7] rounded-[6px] p-3 max-w-xs mx-auto text-[11px] text-[#6E655C]">
             <p>1 Credit has been refunded to your account balance.</p>
           </div>
 
           <div className="pt-4">
             <Link
               href={`/studio/${domain}/step-3`}
-              className="inline-flex items-center justify-center gap-2 bg-[#5B5226] text-white px-6 py-3 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-[#49421D] transition-all shadow-md"
+              className="inline-flex items-center justify-center gap-2 bg-[#5B1A1F] text-bg px-6 py-3 rounded-[4px] text-xs font-bold uppercase tracking-wider hover:bg-[#471418] transition-all shadow-warm-sm"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Return to Customize</span>
@@ -247,65 +249,69 @@ export default function StudioReviewClient({
   const displayImage = signedUrl || "/images/jewellery_craft.jpg";
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#1F1C18] flex flex-col justify-between max-w-md mx-auto px-4 py-3.5 shadow-sm border-x border-[#EFEAE1] pb-24">
+    <div className="min-h-screen bg-bg text-ink flex flex-col justify-between pb-24">
       {/* Top Header */}
-      <header className="flex items-center justify-between pb-2.5">
-        <Link
-          href={`/studio/${domain}/step-3`}
-          className="flex items-center gap-1.5 text-xs font-semibold text-[#29241E] hover:text-black"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="font-serif text-sm truncate max-w-[170px]">
-            {domainTitle} Step 4: Review
-          </span>
-        </Link>
+      <header className="sticky top-0 z-40 w-full bg-surface border-b border-border">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+          <Link
+            href={`/studio/${domain}/step-3`}
+            className="flex items-center gap-2 text-xs font-semibold text-ink hover:text-accent transition-colors duration-150"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span className="font-serif text-base font-bold">
+              {domainTitle} Step 4: Review
+            </span>
+          </Link>
 
-        <div className="flex items-center gap-1.5">
-          <div className="flex items-center gap-1 bg-[#F1ECD9] text-[#5B5226] text-xs font-bold px-2 py-0.5 rounded-full border border-[#E3DCC8]">
-            <span className="text-[10px]">✦</span>
-            <span>{jobQuality === "preview" ? "Preview Render" : "Final 4K"}</span>
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 bg-bg text-accent text-xs font-semibold px-2.5 py-1 rounded-[4px] border border-border">
+              <span className="text-brass">✦</span>
+              <span>{jobQuality === "preview" ? "Preview Render" : "Final 4K"}</span>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Sub Navigation Bar */}
-      <div className="flex items-center justify-between py-1 border-b border-[#EAE3D6] pb-2 text-[10px] font-bold">
-        <Link
-          href={`/studio/${domain}/step-3`}
-          className="flex items-center gap-1 text-[#6E6759] uppercase tracking-wider hover:text-black"
-        >
-          <ArrowLeft className="w-3 h-3" />
-          <span>Back to Customize</span>
-        </Link>
-        <span className="bg-[#EFE9DC] text-[#5B5226] px-2 py-0.5 rounded uppercase tracking-wider">
-          Step 4 of 4 · Masterpiece
-        </span>
+      <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-3">
+        <div className="flex items-center justify-between py-1 border-b border-border pb-2 text-xs font-semibold">
+          <Link
+            href={`/studio/${domain}/step-3`}
+            className="flex items-center gap-1 text-muted uppercase tracking-wider hover:text-ink transition-colors duration-150 text-[10px]"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Back to Customize</span>
+          </Link>
+          <span className="bg-surface text-accent px-2.5 py-0.5 rounded-[4px] border border-border uppercase tracking-wider text-[10px]">
+            Step 4 of 4 · Masterpiece
+          </span>
+        </div>
       </div>
 
       {/* Main Content */}
-      <main className="space-y-4 pt-2">
+      <main className="max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6 flex-1">
         {/* Title & Badge */}
         <div className="space-y-1">
           <div className="flex items-center justify-between">
-            <h1 className="font-serif text-2xl font-normal text-[#1F1C18]">
+            <h1 className="font-serif text-2xl font-normal text-[#1C1714]">
               Review Your Image
             </h1>
-            <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 text-[9px] font-bold px-2 py-0.5 rounded-[4px] uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-[4px] bg-emerald-600"></span>
               <span>Ready</span>
             </span>
           </div>
-          <p className="text-xs text-[#6A6357] leading-relaxed">
+          <p className="text-xs text-[#6E655C] leading-relaxed">
             Your bespoke {domainTitle.toLowerCase()} photograph is rendered and ready for commercial use.
           </p>
         </div>
 
         {/* Generated Image Showcase Card */}
-        <div className="relative rounded-2xl overflow-hidden border border-[#E7E0D3] bg-black shadow-md">
+        <div className="relative rounded-[6px] overflow-hidden border border-[#DDD4C7] bg-black shadow-warm-sm">
           {/* Top Overlays */}
           <div className="absolute top-3 right-3 z-10">
-            <div className="bg-black/60 backdrop-blur-md text-[#E8DFD0] text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider border border-white/20 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <div className="bg-black/60 backdrop-blur-md text-[#E8DFD0] text-[9px] font-bold px-2.5 py-1 rounded-[4px] uppercase tracking-wider border border-white/20 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-[4px] bg-emerald-400"></span>
               <span>
                 {jobQuality === "preview" ? "Preview Grade (Watermarked)" : "4K Masterpiece (Clean)"}
               </span>
@@ -325,14 +331,14 @@ export default function StudioReviewClient({
             />
 
             {/* Bottom Plinth Tag */}
-            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-black/75 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10 text-white shadow-sm">
+            <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-black/75 backdrop-blur-md px-3 py-2 rounded-[6px] border border-white/10 text-bg shadow-warm-sm">
               <div className="flex items-center gap-2 truncate">
                 <Award className="w-4 h-4 text-[#D6B86C] shrink-0" />
                 <span className="text-[11px] font-semibold tracking-wide truncate">
                   {usedModel ? `Rendered via ${usedModel}` : "Studio Certified Quality"}
                 </span>
               </div>
-              <span className="bg-[#5B5226] text-[#F3EFE7] text-[9px] font-bold px-2 py-0.5 rounded tracking-wider uppercase shrink-0">
+              <span className="bg-[#5B1A1F] text-[#F3EFE7] text-[9px] font-bold px-2 py-0.5 rounded tracking-wider uppercase shrink-0">
                 {jobQuality === "preview" ? "1080P" : "4K UHD"}
               </span>
             </div>
@@ -340,13 +346,13 @@ export default function StudioReviewClient({
         </div>
 
         {/* Details Card */}
-        <div className="bg-white rounded-2xl p-4 border border-[#E7E0D3] shadow-xs space-y-3">
+        <div className="bg-surface rounded-[6px] p-4 border border-[#DDD4C7] shadow-warm-sm space-y-3">
           <div className="flex items-start justify-between">
             <div>
-              <h2 className="font-serif text-lg font-bold text-[#1F1C18]">
+              <h2 className="font-serif text-lg font-bold text-[#1C1714]">
                 {defaultTitle}
               </h2>
-              <p className="text-[11px] text-[#787163]">
+              <p className="text-[11px] text-[#6E655C]">
                 {defaultSubtitle}
               </p>
             </div>
@@ -354,10 +360,10 @@ export default function StudioReviewClient({
 
           {/* Metadata Chips */}
           <div className="flex flex-wrap gap-1.5 pt-1">
-            <span className="bg-[#FAF8F5] border border-[#E5DECF] text-[#4F483D] text-[10px] px-2.5 py-1 rounded-md font-medium">
+            <span className="bg-[#F4EFE8] border border-[#DDD4C7] text-[#4F483D] text-[10px] px-2.5 py-1 rounded-md font-medium">
               🔒 Short-lived link (valid 10 mins)
             </span>
-            <span className="bg-[#FAF8F5] border border-[#E5DECF] text-[#4F483D] text-[10px] px-2.5 py-1 rounded-md font-medium">
+            <span className="bg-[#F4EFE8] border border-[#DDD4C7] text-[#4F483D] text-[10px] px-2.5 py-1 rounded-md font-medium">
               {jobQuality === "preview" ? "Free Credit (Preview)" : "Paid Credit (Final 4K)"}
             </span>
           </div>
@@ -369,7 +375,7 @@ export default function StudioReviewClient({
             type="button"
             onClick={handleDownload}
             disabled={isDownloading || !signedUrl}
-            className="flex items-center justify-center gap-2 w-full bg-[#5B5226] hover:bg-[#49421D] text-white py-3.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-all shadow-md active:scale-[0.99] disabled:opacity-75 cursor-pointer"
+            className="flex items-center justify-center gap-2 w-full bg-[#5B1A1F] hover:bg-[#471418] text-bg py-3.5 rounded-[4px] text-xs font-bold tracking-wider uppercase transition-all shadow-warm-sm active:scale-[0.99] disabled:opacity-75 cursor-pointer"
           >
             <Download className="w-4 h-4" />
             <span>
@@ -380,18 +386,18 @@ export default function StudioReviewClient({
           <div className="grid grid-cols-2 gap-2">
             <Link
               href={`/studio/${domain}/step-3`}
-              className="flex items-center justify-center gap-1.5 bg-[#FAF8F5] border border-[#DDD5C7] text-[#2F2921] py-2.5 rounded-lg text-xs font-semibold hover:bg-white transition-all text-center"
+              className="flex items-center justify-center gap-1.5 bg-[#F4EFE8] border border-[#DDD4C7] text-[#1C1714] py-2.5 rounded-[4px] text-xs font-semibold hover:bg-surface transition-all text-center"
             >
-              <Sliders className="w-3.5 h-3.5 text-[#5B5226]" />
+              <Sliders className="w-3.5 h-3.5 text-[#5B1A1F]" />
               <span className="text-[10px] uppercase tracking-wider">
                 Refine Recipe
               </span>
             </Link>
             <Link
               href={`/studio/${domain}/step-3`}
-              className="flex items-center justify-center gap-1.5 bg-[#FAF8F5] border border-[#DDD5C7] text-[#2F2921] py-2.5 rounded-lg text-xs font-semibold hover:bg-white transition-all text-center"
+              className="flex items-center justify-center gap-1.5 bg-[#F4EFE8] border border-[#DDD4C7] text-[#1C1714] py-2.5 rounded-[4px] text-xs font-semibold hover:bg-surface transition-all text-center"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-[#5B5226]" />
+              <RefreshCw className="w-3.5 h-3.5 text-[#5B1A1F]" />
               <span className="text-[10px] uppercase tracking-wider">
                 Generate Variant
               </span>
@@ -400,10 +406,10 @@ export default function StudioReviewClient({
 
           <div className="flex items-center justify-between text-[10px] text-[#696255] font-medium pt-1 px-1">
             <div className="flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3 text-[#5B5226]" />
+              <CheckCircle2 className="w-3 h-3 text-[#5B1A1F]" />
               <span>Ready for Marketplace &amp; Social</span>
             </div>
-            <span className="font-bold text-[#5B5226] uppercase">
+            <span className="font-bold text-[#5B1A1F] uppercase">
               Private Link
             </span>
           </div>
@@ -411,43 +417,45 @@ export default function StudioReviewClient({
       </main>
 
       {/* Persistent Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-[#E8E1D5] py-2 px-6 flex items-center justify-between text-center z-50 shadow-md">
-        <Link
-          href={`/studio/${domain}`}
-          className="flex flex-col items-center gap-0.5 text-[#5B5226]"
-        >
-          <Camera className="w-4 h-4" />
-          <span className="text-[9px] font-bold uppercase tracking-wider">
-            Studio
-          </span>
-        </Link>
-        <Link
-          href="/lookbook"
-          className="flex flex-col items-center gap-0.5 text-[#867F73] hover:text-[#5B5226]"
-        >
-          <Layers className="w-4 h-4" />
-          <span className="text-[9px] font-semibold uppercase tracking-wider">
-            Lookbooks
-          </span>
-        </Link>
-        <Link
-          href="/credits"
-          className="flex flex-col items-center gap-0.5 text-[#867F73] hover:text-[#5B5226]"
-        >
-          <Coins className="w-4 h-4" />
-          <span className="text-[9px] font-semibold uppercase tracking-wider">
-            Credits
-          </span>
-        </Link>
-        <Link
-          href="/atelier"
-          className="flex flex-col items-center gap-0.5 text-[#867F73] hover:text-[#5B5226]"
-        >
-          <Gem className="w-4 h-4" />
-          <span className="text-[9px] font-semibold uppercase tracking-wider">
-            Atelier
-          </span>
-        </Link>
+      <nav className="fixed bottom-0 left-0 right-0 w-full bg-surface border-t border-border py-2 px-6 z-50 shadow-warm-sm">
+        <div className="max-w-5xl mx-auto flex items-center justify-around sm:justify-center sm:gap-16 text-center">
+          <Link
+            href={`/studio/${domain}`}
+            className="flex flex-col items-center gap-0.5 text-accent"
+          >
+            <Camera className="w-4 h-4" />
+            <span className="text-[9px] font-semibold uppercase tracking-wider">
+              Studio
+            </span>
+          </Link>
+          <Link
+            href="/lookbook"
+            className="flex flex-col items-center gap-0.5 text-muted hover:text-ink transition-colors duration-150"
+          >
+            <Layers className="w-4 h-4" />
+            <span className="text-[9px] font-semibold uppercase tracking-wider">
+              Lookbooks
+            </span>
+          </Link>
+          <Link
+            href="/credits"
+            className="flex flex-col items-center gap-0.5 text-muted hover:text-ink transition-colors duration-150"
+          >
+            <Coins className="w-4 h-4" />
+            <span className="text-[9px] font-semibold uppercase tracking-wider">
+              Credits
+            </span>
+          </Link>
+          <Link
+            href="/atelier"
+            className="flex flex-col items-center gap-0.5 text-muted hover:text-ink transition-colors duration-150"
+          >
+            <Gem className="w-4 h-4" />
+            <span className="text-[9px] font-semibold uppercase tracking-wider">
+              Atelier
+            </span>
+          </Link>
+        </div>
       </nav>
     </div>
   );

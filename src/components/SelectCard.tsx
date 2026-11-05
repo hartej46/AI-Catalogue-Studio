@@ -34,12 +34,12 @@ export const SelectCard: React.FC<SelectCardProps> = ({
       disabled={disabled}
       onClick={disabled ? undefined : onClick}
       aria-pressed={selected}
-      className={`relative w-full text-left rounded-2xl transition-all duration-200 select-none focus:outline-none p-3.5 ${
+      className={`relative w-full text-left rounded-[6px] transition-colors duration-150 select-none focus:outline-none p-3.5 border ${
         disabled
-          ? "bg-[#F7F5F0] border border-[#E8E6DF] opacity-50 cursor-not-allowed"
+          ? "bg-bg border-border text-muted opacity-60 cursor-not-allowed"
           : selected
-          ? "bg-[#F5EEDB] border-2 border-[#7A6A2E] shadow-warm-md transform scale-[1.01]"
-          : "bg-white border border-[#E8E6DF] hover:border-[#DFD5B0] hover:bg-[#FAF6ED]/50 shadow-warm-card active:scale-[0.99]"
+          ? "bg-surface border-accent shadow-warm-sm"
+          : "bg-surface border-border hover:border-muted shadow-warm-sm"
       } ${className}`}
     >
       <div
@@ -50,12 +50,12 @@ export const SelectCard: React.FC<SelectCardProps> = ({
         <div className="flex items-center gap-3">
           {icon && (
             <div
-              className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+              className={`w-9 h-9 rounded-[4px] flex items-center justify-center shrink-0 border transition-colors duration-150 ${
                 selected
-                  ? "bg-[#7A6A2E] text-white"
+                  ? "bg-accent border-accent text-bg"
                   : disabled
-                  ? "bg-[#E8E6DF] text-[#8C867A]"
-                  : "bg-[#F5EEDB] text-[#7A6A2E]"
+                  ? "bg-bg border-border text-muted"
+                  : "bg-bg border-border text-brass"
               }`}
             >
               {icon}
@@ -66,19 +66,19 @@ export const SelectCard: React.FC<SelectCardProps> = ({
             <div className="flex items-center gap-2">
               <span
                 className={`font-semibold text-sm ${
-                  selected ? "text-[#1C1917] font-bold" : "text-[#292524]"
+                  selected ? "text-ink font-bold" : "text-ink"
                 }`}
               >
                 {name}
               </span>
               {badge && (
-                <span className="label-micro bg-[#E8DFBE] text-[#7A6A2E] px-1.5 py-0.5 rounded">
+                <span className="label-micro bg-bg border border-border text-muted px-1.5 py-0.5 rounded-[2px]">
                   {badge}
                 </span>
               )}
             </div>
             {label && (
-              <p className="text-xs text-[#78716C] mt-0.5 leading-snug">
+              <p className="text-xs text-muted mt-0.5 leading-snug">
                 {label}
               </p>
             )}
@@ -88,13 +88,13 @@ export const SelectCard: React.FC<SelectCardProps> = ({
         {/* Selected State Check Mark */}
         <div className="shrink-0 ml-2">
           {selected ? (
-            <div className="w-5 h-5 rounded-full bg-[#7A6A2E] text-white flex items-center justify-center shadow-xs">
-              <Check className="w-3 h-3 stroke-[3]" />
+            <div className="w-5 h-5 rounded-[3px] bg-accent text-bg flex items-center justify-center">
+              <Check className="w-3 h-3 stroke-[2.5]" />
             </div>
           ) : (
             <div
-              className={`w-5 h-5 rounded-full border ${
-                disabled ? "border-[#E8E6DF]" : "border-[#D5D2C7] bg-[#FDF9F3]"
+              className={`w-5 h-5 rounded-[3px] border ${
+                disabled ? "border-border bg-bg" : "border-border bg-surface"
               }`}
             />
           )}

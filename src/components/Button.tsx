@@ -31,34 +31,34 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const isDisabled = disabled || loading;
 
-  // Size variations
+  // Size variations - corner radii 4px to 6px (nearly square), no scale bounce
   const sizeClasses = {
-    sm: "px-3 py-1.5 text-xs gap-1.5 rounded-lg",
-    md: "px-4 py-2.5 text-xs gap-2 rounded-xl",
-    lg: "px-5 py-3.5 text-sm gap-2 rounded-xl",
+    sm: "px-3 py-1.5 text-xs gap-1.5 rounded-[4px]",
+    md: "px-4 py-2.5 text-xs gap-2 rounded-[6px]",
+    lg: "px-5 py-3 text-sm gap-2 rounded-[6px]",
   }[size];
 
-  // Variant styling
+  // Variant styling - bone on oxblood, stone borders, tone-shift only
   const variantClasses = {
     solid:
-      "bg-[#7A6A2E] text-white hover:bg-[#655724] active:bg-[#54481D] shadow-sm hover:shadow-warm-sm border border-[#655724]",
+      "bg-accent text-bg hover:bg-accent-hover border border-accent transition-colors duration-150 shadow-warm-sm",
     outline:
-      "bg-white text-[#7A6A2E] border border-[#7A6A2E] hover:bg-[#F5EEDB] active:bg-[#E8DFBE] shadow-xs",
+      "bg-surface text-ink border border-border hover:bg-bg transition-colors duration-150",
     champagne:
-      "bg-[#F5EEDB] text-[#7A6A2E] border border-[#DFD5B0] hover:bg-[#E8DFBE] active:bg-[#DFD5B0] shadow-xs",
+      "bg-surface text-ink border border-border hover:bg-bg transition-colors duration-150",
     ghost:
-      "bg-transparent text-[#57534E] hover:text-[#1C1917] hover:bg-[#F5EEDB]/60 active:bg-[#F5EEDB]",
+      "bg-transparent text-muted hover:text-ink hover:bg-surface transition-colors duration-150",
   }[variant];
 
   const disabledClasses =
-    "bg-[#E8E6DF] text-[#8C867A] border border-[#D5D2C7] cursor-not-allowed shadow-none active:scale-100 hover:bg-[#E8E6DF]";
+    "bg-bg text-muted border border-border cursor-not-allowed shadow-none hover:bg-bg";
 
   return (
     <button
       type={type}
       disabled={isDisabled}
       aria-busy={loading}
-      className={`relative inline-flex items-center justify-center font-sans font-semibold tracking-wider uppercase transition-all duration-150 select-none focus:outline-none active:scale-[0.98] ${sizeClasses} ${
+      className={`relative inline-flex items-center justify-center font-sans font-semibold tracking-wider uppercase transition-colors duration-150 select-none focus:outline-none ${sizeClasses} ${
         isDisabled ? disabledClasses : variantClasses
       } ${className}`}
       {...props}

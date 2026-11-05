@@ -28,7 +28,7 @@ export const CategorySwitcher: React.FC<CategorySwitcherProps> = ({
     <div
       role="tablist"
       aria-label="Product Category Switcher"
-      className={`bg-[#F5EEDB]/80 p-1 rounded-xl border border-[#E8DFBE] flex items-center justify-between shadow-xs select-none ${className}`}
+      className={`bg-bg p-1 rounded-[6px] border border-border flex items-center justify-between select-none ${className}`}
     >
       {CATEGORIES.map(({ key, label, icon: Icon }) => {
         const isActive = selected === key;
@@ -39,16 +39,16 @@ export const CategorySwitcher: React.FC<CategorySwitcherProps> = ({
             aria-selected={isActive}
             type="button"
             onClick={() => onChange(key)}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-semibold tracking-wider transition-all duration-200 focus:outline-none active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-[4px] text-xs tracking-wider transition-colors duration-150 focus:outline-none ${
               isActive
-                ? "bg-white text-[#7A6A2E] shadow-sm border border-[#E8DFBE] font-bold"
-                : "text-[#6B6355] hover:text-[#1C1917] hover:bg-white/40"
+                ? "bg-surface text-ink border border-border font-semibold shadow-warm-sm"
+                : "text-muted hover:text-ink hover:bg-surface/50 border border-transparent font-normal"
             }`}
           >
             {showIcons && (
               <Icon
-                className={`w-3.5 h-3.5 transition-colors ${
-                  isActive ? "text-[#7A6A2E]" : "text-[#8C867A]"
+                className={`w-3.5 h-3.5 transition-colors duration-150 ${
+                  isActive ? "text-brass" : "text-muted"
                 }`}
               />
             )}

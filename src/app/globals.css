@@ -1,47 +1,80 @@
 @import "tailwindcss";
 
+@theme {
+  /* Atelier Color Tokens */
+  --color-bg: #F4EFE8;            /* bone, page background */
+  --color-surface: #FBF8F3;       /* parchment, cards & panels */
+  --color-ink: #1C1714;           /* espresso, main text */
+  --color-muted: #6E655C;         /* warm grey, secondary text */
+  --color-border: #DDD4C7;        /* stone, hairline borders */
+  --color-accent: #5B1A1F;        /* oxblood, primary buttons, links, key moments */
+  --color-accent-hover: #471418;  /* deeper oxblood */
+  --color-brass: #B08D57;         /* antique brass, detail only */
+
+  /* Corner Radii (small and consistent: 4px - 8px, buttons nearly square) */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-card-sm: 6px;
+  --radius-card-lg: 8px;
+
+  /* Subtle Warm Shadows (flat, quiet, no colored glows) */
+  --shadow-warm-sm: 0 1px 2px rgba(28, 23, 20, 0.06);
+  --shadow-warm-card: 0 1px 3px rgba(28, 23, 20, 0.05);
+  --shadow-warm-md: 0 2px 4px rgba(28, 23, 20, 0.06);
+}
+
 :root {
+  --bg: #F4EFE8;
+  --surface: #FBF8F3;
+  --ink: #1C1714;
+  --muted: #6E655C;
+  --border: #DDD4C7;
+  --accent: #5B1A1F;
+  --accent-hover: #471418;
+  --brass: #B08D57;
+
   /* Atelier Typography */
   --font-serif: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", serif;
   --font-sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-
-  /* Atelier Color Palette */
-  --bg-parchment: #FDF9F3;
-  --bg-card: #FFFFFF;
-  --bg-card-muted: #FBF8F2;
-  
-  --color-olive-gold: #7A6A2E;
-  --color-olive-gold-hover: #655724;
-  --color-olive-gold-active: #54481D;
-  --color-olive-gold-muted: rgba(122, 106, 46, 0.08);
-
-  --color-champagne: #E8DFBE;
-  --color-champagne-light: #F5EEDB;
-  --color-champagne-muted: #FAF6ED;
-
-  --color-border: #E8E6DF;
-  --color-border-strong: #D5D2C7;
-
-  --text-primary: #1C1917;
-  --text-secondary: #57534E;
-  --text-muted: #8C867A;
-
-  /* Corner Radii */
-  --radius-card-sm: 12px;
-  --radius-card-lg: 16px;
-
-  /* Soft Warm Shadows */
-  --shadow-warm-sm: 0 2px 8px -1px rgba(122, 106, 46, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
-  --shadow-warm-card: 0 4px 20px -2px rgba(122, 106, 46, 0.06), 0 2px 6px rgba(28, 25, 23, 0.03);
-  --shadow-warm-md: 0 8px 24px -4px rgba(122, 106, 46, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 body {
-  background-color: var(--bg-parchment);
-  color: var(--text-primary);
+  background-color: var(--bg);
+  color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
+
+/* Explicit Utility Classes to Guarantee Tailwind/Turbopack Compilation */
+.bg-bg { background-color: #F4EFE8 !important; }
+.bg-surface { background-color: #FBF8F3 !important; }
+.bg-ink { background-color: #1C1714 !important; }
+.bg-muted { background-color: #6E655C !important; }
+.bg-border { background-color: #DDD4C7 !important; }
+.bg-accent { background-color: #5B1A1F !important; }
+.bg-accent-hover { background-color: #471418 !important; }
+.hover\:bg-accent-hover:hover { background-color: #471418 !important; }
+.bg-brass { background-color: #B08D57 !important; }
+
+.text-bg { color: #F4EFE8 !important; }
+.text-surface { color: #FBF8F3 !important; }
+.text-ink { color: #1C1714 !important; }
+.text-muted { color: #6E655C !important; }
+.text-border { color: #DDD4C7 !important; }
+.text-accent { color: #5B1A1F !important; }
+.text-accent-hover { color: #471418 !important; }
+.hover\:text-accent:hover { color: #5B1A1F !important; }
+.hover\:text-ink:hover { color: #1C1714 !important; }
+.text-brass { color: #B08D57 !important; }
+
+.border-border { border-color: #DDD4C7 !important; }
+.border-accent { border-color: #5B1A1F !important; }
+.border-brass { border-color: #B08D57 !important; }
+.border-muted { border-color: #6E655C !important; }
+.hover\:border-accent:hover { border-color: #5B1A1F !important; }
+.hover\:border-brass:hover { border-color: #B08D57 !important; }
+.hover\:border-muted:hover { border-color: #6E655C !important; }
 
 .font-serif {
   font-family: var(--font-serif);
@@ -51,16 +84,18 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Custom shadows */
+.shadow-warm-sm {
+  box-shadow: 0 1px 2px rgba(28, 23, 20, 0.06);
+}
+
 .shadow-warm-card {
-  box-shadow: var(--shadow-warm-card);
+  box-shadow: 0 1px 3px rgba(28, 23, 20, 0.05);
 }
 
 .shadow-warm-md {
-  box-shadow: var(--shadow-warm-md);
+  box-shadow: 0 2px 4px rgba(28, 23, 20, 0.06);
 }
 
-/* Uppercase Letter Spaced Labels */
 .label-caps {
   font-family: var(--font-sans);
   font-size: 0.6875rem; /* 11px */
@@ -77,7 +112,7 @@ body {
   font-weight: 700;
 }
 
-/* Hide standard scrollbars for sleek mobile carousel */
+/* Hide standard scrollbars */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -85,4 +120,3 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, BookOpen, Coins, Crown } from "lucide-react";
+import { Camera, BookOpen, Coins, Crown } from "lucide-react";
 
 export type TabKey = "studio" | "lookbook" | "credits" | "atelier";
 
@@ -20,7 +20,7 @@ export interface BottomTabBarProps {
 }
 
 const TABS: TabItem[] = [
-  { key: "studio", label: "Studio", icon: Sparkles },
+  { key: "studio", label: "Studio", icon: Camera },
   { key: "lookbook", label: "Lookbook", icon: BookOpen },
   { key: "credits", label: "Credits", icon: Coins, badge: "3" },
   { key: "atelier", label: "Atelier", icon: Crown },
@@ -37,11 +37,11 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
       aria-label="Atelier Navigation"
       className={`${
         isFixed
-          ? "fixed bottom-0 left-0 right-0 z-40 max-w-md mx-auto"
+          ? "fixed bottom-0 left-0 right-0 z-40 w-full"
           : "relative w-full"
-      } bg-[#FDF9F3]/95 backdrop-blur-md border-t border-[#E8E6DF] py-2 px-3 shadow-warm-card ${className}`}
+      } bg-surface border-t border-border shadow-warm-sm ${className}`}
     >
-      <div className="flex items-center justify-around">
+      <div className="max-w-3xl sm:max-w-4xl mx-auto py-2 px-4 flex items-center justify-around">
         {TABS.map(({ key, label, icon: Icon, badge }) => {
           const isActive = activeTab === key;
           return (
@@ -49,27 +49,27 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
               key={key}
               type="button"
               onClick={() => onChange(key)}
-              className={`flex-1 flex flex-col items-center justify-center py-1 px-2 rounded-lg transition-all focus:outline-none active:scale-95 relative ${
-                isActive ? "text-[#7A6A2E]" : "text-[#78716C] hover:text-[#1C1917]"
+              className={`flex-1 flex flex-col items-center justify-center py-1 px-2 rounded-[4px] transition-colors duration-150 focus:outline-none relative ${
+                isActive ? "text-accent" : "text-muted hover:text-ink"
               }`}
             >
               <div className="relative">
                 <div
-                  className={`w-9 h-7 rounded-full flex items-center justify-center transition-colors ${
-                    isActive ? "bg-[#F5EEDB] text-[#7A6A2E]" : "text-[#8C867A]"
+                  className={`w-8 h-6 rounded-[4px] flex items-center justify-center transition-colors duration-150 ${
+                    isActive ? "bg-bg text-accent" : "text-muted"
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? "stroke-[2.2]" : "stroke-[1.8]"}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? "stroke-[2]" : "stroke-[1.5]"}`} />
                 </div>
                 {badge && (
-                  <span className="absolute -top-1 -right-1 bg-[#7A6A2E] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-[#FDF9F3]">
+                  <span className="absolute -top-1 -right-1 bg-accent text-bg text-[9px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center border border-surface">
                     {badge}
                   </span>
                 )}
               </div>
               <span
-                className={`text-[10px] tracking-wider uppercase font-semibold mt-0.5 ${
-                  isActive ? "text-[#7A6A2E] font-bold" : "text-[#78716C]"
+                className={`text-[10px] tracking-wider uppercase mt-0.5 ${
+                  isActive ? "text-accent font-semibold" : "text-muted font-normal"
                 }`}
               >
                 {label}
